@@ -1,0 +1,53 @@
+{
+  "_읽어보세요": "이 파일만 고치면 대시보드에 나오는 항목이 바뀝니다. symbol 은 야후 파이낸스 티커입니다. 한국 종목은 코스피=.KS, 코스닥=.KQ 를 붙입니다(예: 삼성전자 005930.KS, 아이티센글로벌 124500.KQ). 고친 뒤 저장하면 다음 갱신부터 반영됩니다.",
+
+  "site": {
+    "title": "휘영 마켓 데스크",
+    "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정을 한 화면에"
+  },
+
+  "indices": [
+    { "name": "코스피",      "symbol": "^KS11", "dp": 2 },
+    { "name": "코스닥",      "symbol": "^KQ11", "dp": 2 },
+    { "name": "S&P 500",    "symbol": "^GSPC", "dp": 2 },
+    { "name": "나스닥 종합", "symbol": "^IXIC", "dp": 2 },
+    { "name": "다우존스",    "symbol": "^DJI",  "dp": 2 },
+    { "name": "닛케이 225",  "symbol": "^N225", "dp": 0 }
+  ],
+
+  "macro": [
+    { "name": "원/달러",      "symbol": "KRW=X", "unit": "",     "dp": 2, "suffix": "원" },
+    { "name": "미 국채 10년", "symbol": "^TNX",  "unit": "",     "dp": 3, "suffix": "%" },
+    { "name": "금",           "symbol": "GC=F",  "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/oz" },
+    { "name": "은",           "symbol": "SI=F",  "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/oz" },
+    { "name": "WTI",          "symbol": "CL=F",  "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/bbl" },
+    { "name": "브렌트",       "symbol": "BZ=F",  "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/bbl" }
+  ],
+
+  "sentiment": {
+    "symbol": "^VIX",
+    "avg10y": 19.72,
+    "note": "VIX 10년 중앙값은 약 19.7입니다. 이보다 낮으면 시장이 편안하다는 뜻이지만, 유가와 장기금리가 동시에 오르는 국면에서는 낮은 VIX가 오히려 방심 신호일 수 있습니다."
+  },
+
+  "watchlist": [
+    { "name": "아이티센글로벌",       "symbol": "124500.KQ", "market": "KOSDAQ" },
+    { "name": "삼성전자",             "symbol": "005930.KS", "market": "KOSPI" },
+    { "name": "SK하이닉스",           "symbol": "000660.KS", "market": "KOSPI" },
+    { "name": "POSCO홀딩스",          "symbol": "005490.KS", "market": "KOSPI" },
+    { "name": "디앤디파마텍",         "symbol": "347850.KQ", "market": "KOSDAQ" },
+    { "name": "에치에프알",           "symbol": "230240.KQ", "market": "KOSDAQ" },
+    { "name": "파두",                 "symbol": "440110.KQ", "market": "KOSDAQ" },
+    { "name": "Astera Labs",          "symbol": "ALAB",      "market": "NASDAQ" },
+    { "name": "Lattice Semiconductor","symbol": "LSCC",      "market": "NASDAQ" },
+    { "name": "Bloom Energy",         "symbol": "BE",        "market": "NYSE" }
+  ],
+
+  "news_queries": [
+    { "kicker": "KR",  "q": "코스피 증시" },
+    { "kicker": "FX",  "q": "원달러 환율" },
+    { "kicker": "US",  "q": "뉴욕증시 마감" },
+    { "kicker": "OIL", "q": "국제유가 금값" }
+  ],
+  "news_per_query": 2
+}
