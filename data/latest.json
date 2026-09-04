@@ -3,54 +3,389 @@
   "title": "휘영 마켓 데스크",
   "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정을 한 화면에"
  },
- "updatedAt": "2026-09-04T16:40:00+09:00",
+ "updatedAt": "2026-09-05T07:03:39+09:00",
  "indices": [
-  {"name": "코스피", "symbol": "^KS11", "dp": 2, "value": 6687.21, "change": 107.73, "pct": 1.64, "asof": "09.04"},
-  {"name": "코스닥", "symbol": "^KQ11", "dp": 2, "value": 813.5, "change": 23.29, "pct": 2.95, "asof": "09.04"},
-  {"name": "S&P 500", "symbol": "^GSPC", "dp": 2, "value": 7666.6, "change": 38.14, "pct": 0.5, "asof": "09.03"},
-  {"name": "나스닥 종합", "symbol": "^IXIC", "dp": 2, "value": 26217.83, "change": 118.05, "pct": 0.45, "asof": "09.03"},
-  {"name": "다우존스", "symbol": "^DJI", "dp": 2, "value": 53061.95, "change": 295.07, "pct": 0.56, "asof": "09.03"},
-  {"name": "닛케이 225", "symbol": "^N225", "dp": 0, "value": 64276, "change": -66.7, "pct": -0.1, "asof": "09.03"}
+  {
+   "name": "코스피",
+   "symbol": "^KS11",
+   "dp": 2,
+   "value": 6687.21,
+   "change": 107.73,
+   "pct": 1.64,
+   "asof": "09.04",
+   "stale": true
+  },
+  {
+   "name": "코스닥",
+   "symbol": "^KQ11",
+   "dp": 2,
+   "value": 813.5,
+   "change": 23.29,
+   "pct": 2.95,
+   "asof": "09.04",
+   "stale": true
+  },
+  {
+   "name": "S&P 500",
+   "symbol": "^GSPC",
+   "dp": 2,
+   "value": 7666.6,
+   "change": 38.14,
+   "pct": 0.5,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "나스닥 종합",
+   "symbol": "^IXIC",
+   "dp": 2,
+   "value": 26217.83,
+   "change": 118.05,
+   "pct": 0.45,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "다우존스",
+   "symbol": "^DJI",
+   "dp": 2,
+   "value": 53061.95,
+   "change": 295.07,
+   "pct": 0.56,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "닛케이 225",
+   "symbol": "^N225",
+   "dp": 0,
+   "value": 64276,
+   "change": -66.7,
+   "pct": -0.1,
+   "asof": "09.03",
+   "stale": true
+  }
  ],
  "macro": [
-  {"name": "원/달러", "symbol": "KRW=X", "unit": "", "dp": 2, "prefix": "", "suffix": "원", "value": 1350.4, "pct": -0.65, "asof": "09.04"},
-  {"name": "미 국채 10년", "symbol": "^TNX", "unit": "", "dp": 3, "prefix": "", "suffix": "%", "value": 4.818, "pct": null, "asof": "09.03"},
-  {"name": "금", "symbol": "GC=F", "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/oz", "value": 4494.7, "pct": 1.81, "asof": "09.03"},
-  {"name": "은", "symbol": "SI=F", "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/oz", "value": 66.39, "pct": 1.42, "asof": "09.03"},
-  {"name": "WTI", "symbol": "CL=F", "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/bbl", "value": 92.94, "pct": 2.12, "asof": "09.03"},
-  {"name": "브렌트", "symbol": "BZ=F", "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/bbl", "value": 97.45, "pct": 1.9, "asof": "09.03"}
+  {
+   "name": "원/달러",
+   "symbol": "KRW=X",
+   "unit": "",
+   "dp": 2,
+   "prefix": "",
+   "suffix": "원",
+   "value": 1350.4,
+   "pct": -0.65,
+   "asof": "09.04",
+   "stale": true
+  },
+  {
+   "name": "미 국채 10년",
+   "symbol": "^TNX",
+   "unit": "",
+   "dp": 3,
+   "prefix": "",
+   "suffix": "%",
+   "value": 4.818,
+   "pct": null,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "금",
+   "symbol": "GC=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/oz",
+   "value": 4494.7,
+   "pct": 1.81,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "은",
+   "symbol": "SI=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/oz",
+   "value": 66.39,
+   "pct": 1.42,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "WTI",
+   "symbol": "CL=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/bbl",
+   "value": 92.94,
+   "pct": 2.12,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "브렌트",
+   "symbol": "BZ=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/bbl",
+   "value": 97.45,
+   "pct": 1.9,
+   "asof": "09.03",
+   "stale": true
+  }
  ],
  "sentiment": {
-  "vix": 16.34,
-  "asof": "09.01 기준",
+  "vix": 14.53,
+  "asof": "09.05 기준",
   "avg10y": 19.72,
   "note": "VIX 10년 중앙값은 약 19.7입니다. 이보다 낮으면 시장이 편안하다는 뜻이지만, 유가와 장기금리가 동시에 오르는 국면에서는 낮은 VIX가 오히려 방심 신호일 수 있습니다."
  },
  "watchlist": [
-  {"name": "아이티센글로벌", "symbol": "124500.KQ", "code": "124500", "market": "KOSDAQ", "currency": "KRW", "price": 35950, "change": 3250, "pct": 9.94, "asof": "09.04"},
-  {"name": "삼성전자", "symbol": "005930.KS", "code": "005930", "market": "KOSPI", "currency": "KRW", "price": 250000, "change": -500, "pct": -0.2, "asof": "09.03"},
-  {"name": "SK하이닉스", "symbol": "000660.KS", "code": "000660", "market": "KOSPI", "currency": "KRW", "price": 1596000, "change": -17000, "pct": -1.05, "asof": "09.03"},
-  {"name": "POSCO홀딩스", "symbol": "005490.KS", "code": "005490", "market": "KOSPI", "currency": "KRW", "price": 342000, "change": 12000, "pct": 3.64, "asof": "09.03"},
-  {"name": "디앤디파마텍", "symbol": "347850.KQ", "code": "347850", "market": "KOSDAQ", "currency": "KRW", "price": 51800, "change": -1700, "pct": -3.18, "asof": "09.01"},
-  {"name": "에치에프알", "symbol": "230240.KQ", "code": "230240", "market": "KOSDAQ", "currency": "KRW", "price": 12380, "change": -510, "pct": -3.96, "asof": "09.03"},
-  {"name": "파두", "symbol": "440110.KQ", "code": "440110", "market": "KOSDAQ", "currency": "KRW", "price": 62800, "change": -300, "pct": -0.48, "asof": "09.02"},
-  {"name": "Astera Labs", "symbol": "ALAB", "code": "ALAB", "market": "NASDAQ", "currency": "USD", "price": 282.82, "change": 8.69, "pct": 3.17, "asof": "09.03"},
-  {"name": "Lattice Semiconductor", "symbol": "LSCC", "code": "LSCC", "market": "NASDAQ", "currency": "USD", "price": 112.82, "change": -1.06, "pct": -0.93, "asof": "09.03"},
-  {"name": "Bloom Energy", "symbol": "BE", "code": "BE", "market": "NYSE", "currency": "USD", "price": 235.55, "change": 18.27, "pct": 8.41, "asof": "09.03"}
+  {
+   "name": "아이티센글로벌",
+   "symbol": "124500.KQ",
+   "code": "124500",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 35950,
+   "change": 3250,
+   "pct": 9.94,
+   "asof": "09.04",
+   "stale": true
+  },
+  {
+   "name": "삼성전자",
+   "symbol": "005930.KS",
+   "code": "005930",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 250000,
+   "change": -500,
+   "pct": -0.2,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "SK하이닉스",
+   "symbol": "000660.KS",
+   "code": "000660",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 1596000,
+   "change": -17000,
+   "pct": -1.05,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "POSCO홀딩스",
+   "symbol": "005490.KS",
+   "code": "005490",
+   "market": "KOSPI",
+   "currency": "KRW",
+   "price": 342000,
+   "change": 12000,
+   "pct": 3.64,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "디앤디파마텍",
+   "symbol": "347850.KQ",
+   "code": "347850",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 51800,
+   "change": -1700,
+   "pct": -3.18,
+   "asof": "09.01",
+   "stale": true
+  },
+  {
+   "name": "에치에프알",
+   "symbol": "230240.KQ",
+   "code": "230240",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 12380,
+   "change": -510,
+   "pct": -3.96,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "파두",
+   "symbol": "440110.KQ",
+   "code": "440110",
+   "market": "KOSDAQ",
+   "currency": "KRW",
+   "price": 62800,
+   "change": -300,
+   "pct": -0.48,
+   "asof": "09.02",
+   "stale": true
+  },
+  {
+   "name": "Astera Labs",
+   "symbol": "ALAB",
+   "code": "ALAB",
+   "market": "NASDAQ",
+   "currency": "USD",
+   "price": 282.82,
+   "change": 8.69,
+   "pct": 3.17,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "Lattice Semiconductor",
+   "symbol": "LSCC",
+   "code": "LSCC",
+   "market": "NASDAQ",
+   "currency": "USD",
+   "price": 112.82,
+   "change": -1.06,
+   "pct": -0.93,
+   "asof": "09.03",
+   "stale": true
+  },
+  {
+   "name": "Bloom Energy",
+   "symbol": "BE",
+   "code": "BE",
+   "market": "NYSE",
+   "currency": "USD",
+   "price": 235.55,
+   "change": 18.27,
+   "pct": 8.41,
+   "asof": "09.03",
+   "stale": true
+  }
  ],
  "news": [
-  {"kicker": "KR", "title": "코스닥 2.95% 급등한 813.50, 코스피는 6,687.21로 마감", "body": "코스피 +107.73p(+1.64%), 코스닥 +23.29p(+2.95%). 전일 수급 공백으로 6,579선까지 밀렸던 흐름을 하루 만에 되돌렸습니다.", "source": "머니투데이 · 09.04", "url": "https://www.mt.co.kr/stock/2026/09/04/2026090415282496905"},
-  {"kicker": "FX", "title": "원/달러 8.9원 내린 1,350.4원", "body": "서울외환시장 오후 3시 30분 주간거래 종가 기준. 원화 강세가 외국인 수급에 우호적으로 작용했습니다.", "source": "머니투데이 · 09.04", "url": "https://www.mt.co.kr/economy/2026/09/04/2026090415342187051"},
-  {"kicker": "US", "title": "미 10년물 4.818% 도달, 유가·금리 동반 상승 속 지수는 반등", "body": "다우 +295.07p(+0.6%), 나스닥 +118.05p(+0.5%). Dell +15.8%, GitLab +10% 등 실적 서프라이즈가 지수를 끌어올렸지만, 에너지(+1.3%)를 뺀 IT·소재·산업재는 약세였습니다.", "source": "Yahoo Finance · 09.03", "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-sep-3-095800036.html"},
-  {"kicker": "OIL", "title": "미-이란 갈등 심화에 WTI $92.94, 브렌트 $97.45", "body": "호르무즈 해협 리스크가 다시 유가에 반영되는 국면. 금도 $4,494.70(+1.81%)로 동반 강세입니다.", "source": "TheStreet · 09.03", "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-03-2026"}
+  {
+   "kicker": "KR",
+   "title": "[주간증시전망] 코스피, 반도체 반등 이어갈까…美 물가·동시만기 '변수'",
+   "body": "[주간증시전망] 코스피, 반도체 반등 이어갈까…美 물가·동시만기 '변수' &nbsp;&nbsp;",
+   "source": "v.daum.net · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5NQjNXaE9rZG9zSkRINEJtY2RqaG5fekNPSmF0d2VNb3RvQjQxXzN2OTBUZWNjSGNlMmhjZFFnZGotQ2NxY2E3OHFoSHJBdlU?oc=5"
+  },
+  {
+   "kicker": "KR",
+   "title": "코스피 美금리부담 완화에 올라…코스닥 닷새만 상승",
+   "body": "코스피 美금리부담 완화에 올라…코스닥 닷새만 상승 &nbsp;&nbsp;",
+   "source": "연합뉴스 · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE1IRU9tZy1qNnFZS2Z2WTc5aXZtM0EyTElwNlJUQVpYWDlJbWFFU04wWmstdGlqSklBQXE1S2hFbzRxRDRQQW1HR1VWVWVuOWNDa1pTTTI3MjdWWWtoZ2Z0WNIBYEFVX3lxTE1IRU9tZy1qNnFZS2Z2WTc5aXZtM0EyTElwNlJUQVpYWDlJbWFFU04wWmstdGlqSklBQXE1S2hFbzRxRDRQQW1HR1VWVWVuOWNDa1pTTTI3MjdWWWtoZ2Z0WA?oc=5"
+  },
+  {
+   "kicker": "FX",
+   "title": "원·달러 환율 14개월 만에 장중 1,340원대",
+   "body": "원·달러 환율 14개월 만에 장중 1,340원대 &nbsp;&nbsp;",
+   "source": "연합뉴스TV · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5fSWljT1A5UmJwVjhjc0swWlRLajBubHlra0FjUXdKa045QTVvVXhFc3kwSnFEemtzaUNIRWNDLURObTVWV2pEeHpXVFJlSXh2cWx0Y2wtbVVJbk9nd3JtWmtnSUM0c2M?oc=5"
+  },
+  {
+   "kicker": "FX",
+   "title": "엔화 강세에…원/달러 환율 14개월 만에 장중 1,340원대로",
+   "body": "엔화 강세에…원/달러 환율 14개월 만에 장중 1,340원대로 &nbsp;&nbsp;",
+   "source": "연합뉴스 · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBGV2RGRk5lRW44bW95VTBlV3dFRkNiUTBHNjNyTEtyVHdKVktPOWlBZERPaDFVS21yY3NhTHBJazMwN3dTV1ROODFERUFaa2RhOXNnd2NPN1RnS0HSAWBBVV95cUxNb3F4TUsxZFduLUNPdDFWSkdLN2gwRGtST25JejdjVHZKeVR0RHFsa1RJN0FWbkdfcjR5cHk1SjlNcXBEdHZ6cUkwZ3RiaXY2b1duekQwdkpVdWxVZ2ZGZzE?oc=5"
+  },
+  {
+   "kicker": "US",
+   "title": "[뉴욕증시] 너무 좋아서 실망스러운 고용…하락 마감",
+   "body": "[뉴욕증시] 너무 좋아서 실망스러운 고용…하락 마감 &nbsp;&nbsp;",
+   "source": "연합인포맥스 · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE1SVWsxTDdFZDZLTjY0VG1FdjFVdGZfWC1qcmN0TU9vX0pEMC1iWlhhZkVGWXpjRkprcGlNTHpOUUhvaFZrdWRMSGxtZU1yUmk2X25jQVp1LWFyQXR1bnJ4WTU0WUo1c2s2U0ZKUDZZTjA?oc=5"
+  },
+  {
+   "kicker": "US",
+   "title": "[속보] 뉴욕 증시, 금리인상 우려에 반락 마감···다우 0.51%↓ 나스닥 0.29%↓",
+   "body": "[속보] 뉴욕 증시, 금리인상 우려에 반락 마감···다우 0.51%↓ 나스닥 0.29%↓ &nbsp;&nbsp;",
+   "source": "뉴시스 · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBqMUdOYlNzWklxNUFLa0ZNeTlCb3F1U194VWtoU0pSOEVLR1YyeHFwbUFsTUNKYVFGZHhKZmNXZHlPVTRvRndXZDVsWmdBb2I2RUpaS1M3Qi1zd0FPazV5cdIBeEFVX3lxTE5NLW9MOXQ4TXEydzYtMk5VdnZfMnZuLUJOWktuUDM1VDdSOUFmNFZETU1uSVZyd0RMTmNrSnRJRGdIaHFsd3cwSWtyYkxwb3JjZnRyNUlRNFljQVlIeUd3eF91UE5mZGhrTUsySEJXdUEyNENqbEVYNA?oc=5"
+  },
+  {
+   "kicker": "OIL",
+   "title": "국제유가, 중동리스크 확산 우려 등 영향으로 상승-WTI 5거래일 연속 올라",
+   "body": "국제유가, 중동리스크 확산 우려 등 영향으로 상승-WTI 5거래일 연속 올라 &nbsp;&nbsp;",
+   "source": "포커스온경제 · 09.04",
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFA1SFR0dWhLNFdlSFgtWDVYVmNDSFp1YWMwcDlpZU9qZENfbDJZTlQ1bFpvT0ttaklXWklZdThjdk4wS19NUVZtSHowUUN4N3ZRR29jbFFKOTFkb1d1aHc?oc=5"
+  },
+  {
+   "kicker": "OIL",
+   "title": "[금/유가] 금리인상 기대 낮춘 월러 발언에 금값 2% 급등…유가 혼조",
+   "body": "[금/유가] 금리인상 기대 낮춘 월러 발언에 금값 2% 급등…유가 혼조 &nbsp;&nbsp;",
+   "source": "뉴스핌 · 09.03",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTE05WjV0clhaQmJBWmdCYjcyMHA0SFl0TjM0NV9QSWtTSGx3Y3BzYmhpdkFfa2drMTI5VXBwbGw0TERzYzFOYjktMTRieVFNb2xDRDNNWjJPZWhLYXkx?oc=5"
+  }
  ],
  "calendar": [
-  {"date": "2026-09-10", "title": "미 8월 PPI", "note": "08:30 ET", "high": false},
-  {"date": "2026-09-11", "title": "미 8월 CPI", "note": "08:30 ET · 유가 상승분 반영 여부", "high": true},
-  {"date": "2026-09-16", "title": "미 8월 소매판매 (선행)", "note": "08:30 ET", "high": false},
-  {"date": "2026-09-16", "title": "FOMC 금리 결정", "note": "14:00 ET · 9/15-16 회의", "high": true},
-  {"date": "2026-09-29", "title": "미 8월 JOLTS 구인·이직", "note": "10:00 ET", "high": false},
-  {"date": "2026-09-30", "title": "미 8월 PCE 물가 · Q2 GDP 확정", "note": "08:30 ET · 연준 선호 지표", "high": true}
+  {
+   "date": "2026-09-10",
+   "title": "미 8월 PPI",
+   "note": "08:30 ET",
+   "high": false
+  },
+  {
+   "date": "2026-09-11",
+   "title": "미 8월 CPI",
+   "note": "08:30 ET · 유가 상승분 반영 여부",
+   "high": true
+  },
+  {
+   "date": "2026-09-16",
+   "title": "미 8월 소매판매 (선행)",
+   "note": "08:30 ET",
+   "high": false
+  },
+  {
+   "date": "2026-09-16",
+   "title": "FOMC 금리 결정",
+   "note": "14:00 ET · 9/15-16 회의",
+   "high": true
+  },
+  {
+   "date": "2026-09-29",
+   "title": "미 8월 JOLTS 구인·이직",
+   "note": "10:00 ET",
+   "high": false
+  },
+  {
+   "date": "2026-09-30",
+   "title": "미 8월 PCE 물가 · Q2 GDP 확정",
+   "note": "08:30 ET · 연준 선호 지표",
+   "high": true
+  }
  ],
- "warnings": []
+ "warnings": [
+  "^KS11: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "^KQ11: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "^GSPC: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^IXIC: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^DJI: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^N225: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "KRW=X: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^TNX: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "GC=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "SI=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "CL=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "BZ=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "124500.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "005930.KS: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "000660.KS: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "005490.KS: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "347850.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "230240.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "440110.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "ALAB: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "LSCC: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "BE: 시세 수집 실패 (HTTP Error 429: Too Many Requests)"
+ ]
 }
