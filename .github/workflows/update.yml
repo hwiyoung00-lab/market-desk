@@ -28,6 +28,8 @@ jobs:
           python-version: "3.12"
 
       - name: 데이터 수집
+        env:
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python scripts/collect.py
 
       - name: 바뀐 게 있으면 커밋
