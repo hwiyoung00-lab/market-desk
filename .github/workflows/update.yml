@@ -1,14 +1,22 @@
 name: 시세 갱신
 
 on:
+  # 평일 자동 실행. cron 은 UTC 기준이라 한국시간에서 9시간을 뺍니다.
+  #   07:00 UTC = 한국 16:00 (한국장 마감 후)
+  #   22:00 UTC = 한국 다음날 07:00 (미국장 마감 후)
+  # GitHub 의 예약 실행은 혼잡하면 수 분~수십 분 밀릺니다. 정시 보장은 없습니다.
   schedule:
     - cron: "0 7 * * 1-5"
     - cron: "0 22 * * 1-5"
+
+  # Actions 탭에서 "Run workflow" 버튼으로 직접 돌릴 때 쓅니다.
   workflow_dispatch:
 
+# 워크플로가 저장소에 커밋할 수 있게 쓰기 권한을 줍니다.
 permissions:
   contents: write
 
+# 앞선 실행이 아직 돌고 있으면 겹칠 돌리지 않습니다.
 concurrency:
   group: update-data
   cancel-in-progress: false
@@ -27,8 +35,17 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: 수집 도구 설치
+        # yfinance 는 여러 종목을 한 번에 받아오고 야후의 쿠키·crumb 처리를
+        # 대신 해줍니다. 개별 호출로는 요청이 너무 많아 HTTP 429 로 막힙니다.
+        run: pip install --quiet --upgrade "yfinance>=0.2.40"
+
       - name: 데이터 수집
         env:
+          # DART 전자공시 연동은 선택입니다. 키를 등록하지 않으면 공시 화면만
+          # 비고 나머지는 정상 동작합니다.
+          # 등록: Settings → Secrets and variables → Actions → New repository secret
+          #       이름 DART_API_KEY, 값은 opendart.fss.or.kr 에서 받은 인증키
           DART_API_KEY: ${{ secrets.DART_API_KEY }}
         run: python scripts/collect.py
 
@@ -36,9 +53,9 @@ jobs:
         run: |
           git config user.name  "market-desk-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/latest.json
+          git add data/latest.json data/dart_corp.json 2>/dev/null || git add data/latest.json
           if git diff --staged --quiet; then
-            echo "변경 없음"
+            echo "변경 없음 — 커밋하지 않습니다."
           else
             git commit -m "데이터 갱신 $(TZ=Asia/Seoul date '+%Y-%m-%d %H:%M KST')"
             git push
