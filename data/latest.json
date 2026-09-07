@@ -3,7 +3,7 @@
   "title": "휘영 마켓 데스크",
   "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정"
  },
- "updatedAt": "2026-09-07T15:51:55+09:00",
+ "updatedAt": "2026-09-07T16:09:28+09:00",
  "homeIndices": [
   "^KS11",
   "^KQ11",
@@ -55,8 +55,8 @@
    "name": "코스피",
    "symbol": "^KS11",
    "dp": 2,
-   "value": 6995.3999,
-   "change": 308.1899,
+   "value": 6995.3901,
+   "change": 308.1802,
    "pct": 4.609,
    "asof": "09.07",
    "spark": [
@@ -80,7 +80,7 @@
     6562.7202,
     6579.48,
     6687.21,
-    6995.3999
+    6995.3901
    ],
    "group": "아시아"
   },
@@ -154,9 +154,9 @@
    "name": "항셍",
    "symbol": "^HSI",
    "dp": 0,
-   "value": 25451.1504,
-   "change": -199.7188,
-   "pct": -0.779,
+   "value": 25459.7207,
+   "change": -191.1484,
+   "pct": -0.745,
    "asof": "09.07",
    "spark": [
     25668.0293,
@@ -180,7 +180,7 @@
     25311.2109,
     25213.3105,
     25650.8691,
-    25451.1504
+    25459.7207
    ],
    "group": "아시아"
   },
@@ -188,9 +188,9 @@
    "name": "상하이종합",
    "symbol": "000001.SS",
    "dp": 2,
-   "value": 3934.5137,
-   "change": 4.3977,
-   "pct": 0.112,
+   "value": 3933.8074,
+   "change": 3.6914,
+   "pct": 0.094,
    "asof": "09.07",
    "spark": [
     3940.0371,
@@ -214,7 +214,7 @@
     3941.386,
     3942.0879,
     3930.116,
-    3934.5137
+    3933.8074
    ],
    "group": "아시아"
   },
@@ -363,7 +363,6 @@
    "pct": 0.162,
    "asof": "09.04",
    "spark": [
-    6502.5601,
     6523.8599,
     6535.6201,
     6551.2202,
@@ -394,9 +393,9 @@
    "name": "원/달러",
    "symbol": "KRW=X",
    "dp": 2,
-   "value": 1341.4,
-   "change": -14.01,
-   "pct": -1.034,
+   "value": 1343.2,
+   "change": -12.2101,
+   "pct": -0.901,
    "asof": "09.07",
    "spark": [
     1422.3,
@@ -420,7 +419,7 @@
     1372.86,
     1358.39,
     1355.41,
-    1341.4
+    1343.2
    ],
    "unit": "",
    "prefix": null,
@@ -430,9 +429,9 @@
    "name": "엔/달러",
    "symbol": "JPY=X",
    "dp": 2,
-   "value": 155.779,
-   "change": 0.119,
-   "pct": 0.076,
+   "value": 155.838,
+   "change": 0.178,
+   "pct": 0.114,
    "asof": "09.07",
    "spark": [
     158.409,
@@ -456,7 +455,7 @@
     160.196,
     158.923,
     155.66,
-    155.779
+    155.838
    ],
    "unit": "",
    "prefix": null,
@@ -466,9 +465,9 @@
    "name": "달러인덱스",
    "symbol": "DX-Y.NYB",
    "dp": 2,
-   "value": 99.078,
-   "change": -0.082,
-   "pct": -0.083,
+   "value": 99.12,
+   "change": -0.04,
+   "pct": -0.04,
    "asof": "09.07",
    "spark": [
     99.6,
@@ -492,7 +491,7 @@
     99.56,
     99.0,
     99.16,
-    99.078
+    99.12
    ],
    "unit": "DXY",
    "prefix": null,
@@ -1270,12 +1269,11 @@
    "name": "비트코인",
    "symbol": "BTC-USD",
    "dp": 0,
-   "value": 79658.0938,
-   "change": -165.7734,
-   "pct": -0.208,
+   "value": 79670.9766,
+   "change": -679.0703,
+   "pct": -0.845,
    "asof": "09.07",
    "spark": [
-    62818.6523,
     64506.2539,
     64680.7109,
     69266.1875,
@@ -1296,19 +1294,19 @@
     81271.7422,
     79671.9688,
     79823.8672,
-    79658.0938
+    80350.0469,
+    79670.9766
    ]
   },
   {
    "name": "이더리움",
    "symbol": "ETH-USD",
    "dp": 2,
-   "value": 2499.25,
-   "change": 18.5144,
-   "pct": 0.746,
+   "value": 2500.1799,
+   "change": -14.3689,
+   "pct": -0.571,
    "asof": "09.07",
    "spark": [
-    1873.943,
     1912.2021,
     1916.4596,
     2251.458,
@@ -1329,7 +1327,8 @@
     2508.0208,
     2456.0781,
     2480.7356,
-    2499.25
+    2514.5488,
+    2500.1799
    ]
   }
  ],
@@ -1339,7 +1338,6 @@
   "vix": 14.53,
   "asof": "09.04",
   "spark": [
-   15.15,
    14.9,
    15.46,
    15.28,
@@ -1729,31 +1727,31 @@
  "news": [
   {
    "kicker": "KR",
+   "title": "[증시 레이더] 코스피 4.61% 급등 6,995⋯삼성전자 '27만전자'",
+   "body": "[증시 레이더] 코스피 4.61% 급등 6,995⋯삼성전자 '27만전자' &nbsp;&nbsp;",
+   "source": "포커스온경제 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE12cU1KQzZRQkR0Nm8wZEV0QmVGbkRaLS1qc2pIRUV4dlU5NXlaTWV5OFM2S3ZUT3dlZ0ZkWndlb0lwcGRvZS1ENU9IQ1RFTWswXzlmNFFrS0FFWWkySUE?oc=5"
+  },
+  {
+   "kicker": "KR",
    "title": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합)",
    "body": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합) &nbsp;&nbsp;",
    "source": "연합뉴스 · 09.07",
    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5SVnYzTmdfTHpGS2pETUtPQkJRdmxSY3h4OUxOQXJmVVpDcEVxZEFhTzJlQUxnZkhaejBKaUF2V1VVTzBWYWFYemt0cXZjOVh1SmdDTV9iWnd3Q3JLT25SUdIBYEFVX3lxTE5SVnYzTmdfTHpGS2pETUtPQkJRdmxSY3h4OUxOQXJmVVpDcEVxZEFhTzJlQUxnZkhaejBKaUF2V1VVTzBWYWFYemt0cXZjOVh1SmdDTV9iWnd3Q3JLT25SUQ?oc=5"
   },
   {
-   "kicker": "KR",
-   "title": "'사상 첫 수능만점' 일 냈다…美 AI 훈풍에 코스피 6,900 회복 |",
-   "body": "'사상 첫 수능만점' 일 냈다…美 AI 훈풍에 코스피 6,900 회복 | &nbsp;&nbsp;",
-   "source": "연합인포맥스 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBJRXozQmxrTG1iRFZpWFBzWmJXdlMtY3E2S3N4TFdwamFzLS1kMXZqQVZQODR4ZEdQdndINjRnMDVGak5STVZtQW85UEY3WEN5VlJmQWFocVRUaGhKQTVjeEhqMUkyNGdDRGsxaVk5NE5qQVNM?oc=5"
-  },
-  {
    "kicker": "FX",
    "title": "코스피 3%대 상승 출발...원·달러 환율 장중 1,330원대",
    "body": "코스피 3%대 상승 출발...원·달러 환율 장중 1,330원대 &nbsp;&nbsp;",
-   "source": "ytn.co.kr · 09.07",
+   "source": "YTN · 09.07",
    "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA5YTBRT3ZzMEhOOFpZdU8tekFHQkJqbmJFUC1mVUdUUzdmTE1qaDU0Yzd0Z1ktbW14NURaZmVCbGhwQnpyazBhYUhJTUU4SzJELXIwakRnY28xNVlVVlpSUHpYa3FZTllOTHdyNlpvMA?oc=5"
   },
   {
    "kicker": "FX",
-   "title": "[속보]원·달러 환율 장중 1330원대로 하락",
-   "body": "[속보]원·달러 환율 장중 1330원대로 하락 &nbsp;&nbsp;",
-   "source": "아시아경제 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wVVI1NGJ1R0dXbVlBdEMyYlJFRkZxeUpNa19aaHBGclZMS2dtYnA5U3ZOTktYWmtIZ0NhZFZmV053dXJ3c3d3d2EzNmtaVWNEbFpac3dkZVZUZEpUc1AxRw?oc=5"
+   "title": "[외환] 원/달러 환율 9.9원 내린 1,340.5원(15:30 기준가)",
+   "body": "[외환] 원/달러 환율 9.9원 내린 1,340.5원(15:30 기준가) &nbsp;&nbsp;",
+   "source": "매일경제 마켓 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5uUFlXVVBlUWhxalVsRURmMjFzcW94LXdEN2o0aW1wbFFUdDNBb3hhS3NPWV8xcGVWaVVhcVFNVWtNY1ZRQmcyUWdiRVlKLTdfTGc?oc=5"
   },
   {
    "kicker": "US",
@@ -1778,10 +1776,10 @@
   },
   {
    "kicker": "OIL",
-   "title": "[금값시세] 금시세 1돈",
-   "body": "[금값시세] 금시세 1돈 &nbsp;&nbsp;",
-   "source": "게임톡 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBVMWVhNW90WEFHQndsVFNCem9SY1hQQk83YmhjY21YVUV5NlFETENydnZhS01XcjNONWdyMkY0cDZuaWZtMzhCMmEwSzd0aXdZTDBFbngxZ0pzbjQ2QzNkSUVJZzJ5SVI0QWRQOA?oc=5"
+   "title": "전 세계 덮친 ‘이란 공습’ 후폭풍…유가·금값 들썩",
+   "body": "전 세계 덮친 ‘이란 공습’ 후폭풍…유가·금값 들썩 &nbsp;&nbsp;",
+   "source": "쿠키뉴스 · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1Udjd2QkdIX1lMa2VOZkcwd1A0LV9RZnpXRm5DS2JnZkVLeUlZX19CbVU1bmk2ekl4S1dBdlpZMExHQ2dfTUk3RUJNUmRiSEJWVmpPMnlxcWxKYkxrUUhZa3dScw?oc=5"
   },
   {
    "kicker": "FED",
