@@ -115,6 +115,111 @@ STOOQ_FALLBACK = {
 _cache = {}
 
 
+# --------------------------------------------------------------------------
+# 1순위: yfinance 배치 조회
+#
+# 종목마다 따로 부르면 요청이 수십 번이 되고, 야후는 데이터센터 IP(=GitHub
+# Actions)에 그 정도 빈도를 허용하지 않습니다 — HTTP 429 로 막힙니다.
+# yfinance 는 여러 종목을 한 번에 받아오고 쿠키·crumb 처리도 대신 해줍니다.
+# 이걸 먼저 돌려 캐시를 채우고, 실패한 것만 개별 경로로 넘깁니다.
+# --------------------------------------------------------------------------
+
+BATCH = 20
+
+
+def batch_prefetch(symbols):
+    syms = [s for s in dict.fromkeys(symbols) if s]
+    if not syms:
+        return
+    try:
+        import yfinance as yf
+    except ImportError:
+        warn("yfinance 가 없어 배치 조회를 건너뜁니다 (개별 조회로 진행).")
+        return
+
+    got = 0
+    for i in range(0, len(syms), BATCH):
+        chunk = syms[i:i + BATCH]
+        try:
+            df = yf.download(chunk, period="1mo", interval="1d",
+                             group_by="ticker", auto_adjust=False,
+                             threads=False, progress=False, timeout=40)
+        except Exception as e:                          # noqa: BLE001
+            warn("배치 조회 실패 (%d개) — %s" % (len(chunk), e))
+            time.sleep(3)
+            continue
+        if df is None or len(df) == 0:
+            time.sleep(2)
+            continue
+
+        for sym in chunk:
+            try:
+                if len(chunk) == 1:
+                    col = df["Close"]
+                else:
+                    if sym not in df.columns.get_level_values(0):
+                        continue
+                    col = df[sym]["Close"]
+                ser = [(idx, float(v)) for idx, v in col.items()
+                       if v == v and v is not None]     # NaN 제외
+                if not ser:
+                    continue
+                price = ser[-1][1]
+                prev = ser[-2][1] if len(ser) >= 2 else None
+                _cache[sym] = {
+                    "price": price,
+                    "change": None if prev is None else price - prev,
+                    "pct": None if not prev else (price - prev) / prev * 100.0,
+                    "asof": ser[-1][0].strftime("%m.%d"),
+                    "currency": "KRW" if sym.endswith((".KS", ".KQ")) else "",
+                    "spark": [rnd(v, 4) for _, v in ser[-22:]],
+                }
+                got += 1
+            except Exception:                           # noqa: BLE001
+                continue
+        time.sleep(2)
+    print("  배치 조회로 %d/%d 확보" % (got, len(syms)))
+
+
+# --------------------------------------------------------------------------
+# 한국 종목 예비 경로 — 네이버금융 (키 불필요)
+# --------------------------------------------------------------------------
+
+NAVER = ("https://api.finance.naver.com/siseJson.naver"
+         "?symbol=%s&requestType=1&startTime=%s&endTime=%s&timeframe=day")
+NAVER_ROW = re.compile(
+    r"\[\s*'(\d{8})'\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)")
+NAVER_INDEX = {"^KS11": "KOSPI", "^KQ11": "KOSDAQ"}
+
+
+def quote_naver(symbol):
+    if symbol in NAVER_INDEX:
+        code = NAVER_INDEX[symbol]
+    elif symbol.endswith((".KS", ".KQ")):
+        code = symbol.split(".")[0]
+    else:
+        raise ValueError("네이버 대상 아님")
+
+    end = datetime.now(KST)
+    bgn = end - timedelta(days=45)
+    txt = http_get(NAVER % (code, bgn.strftime("%Y%m%d"), end.strftime("%Y%m%d")),
+                   headers={"Referer": "https://finance.naver.com/"}
+                   ).decode("utf-8", "replace")
+    rows = NAVER_ROW.findall(txt)
+    if not rows:
+        raise ValueError("행 없음")
+    closes = [(r[0], float(r[4])) for r in rows]
+    price = closes[-1][1]
+    prev = closes[-2][1] if len(closes) >= 2 else None
+    d = closes[-1][0]
+    return {"price": price,
+            "change": None if prev is None else price - prev,
+            "pct": None if not prev else (price - prev) / prev * 100.0,
+            "asof": "%s.%s" % (d[4:6], d[6:8]),
+            "currency": "KRW",
+            "spark": [rnd(v, 4) for _, v in closes[-22:]]}
+
+
 def quote_yahoo(symbol):
     raw = http_get(YAHOO.format(sym=urllib.parse.quote(symbol)))
     doc = json.loads(raw.decode("utf-8"))
@@ -172,25 +277,39 @@ def quote_stooq(stooq_sym):
 
 
 def quote(symbol):
-    """야후 → stooq 순으로 시도. 둘 다 실패하면 None. 같은 심볼은 한 번만."""
+    """배치 캐시 → 네이버(한국) → 야후 → stooq 순. 전부 실패하면 None."""
     if symbol in _cache:
         return _cache[symbol]
+
+    errs = []
     out = None
-    try:
-        out = quote_yahoo(symbol)
-    except Exception as e:                              # noqa: BLE001
+    kr = symbol.endswith((".KS", ".KQ")) or symbol in NAVER_INDEX
+
+    if kr:
+        try:
+            out = quote_naver(symbol)
+        except Exception as e:                          # noqa: BLE001
+            errs.append("네이버:" + str(e)[:60])
+
+    if out is None:
+        try:
+            out = quote_yahoo(symbol)
+        except Exception as e:                          # noqa: BLE001
+            errs.append("야후:" + str(e)[:60])
+
+    if out is None:
         alt = STOOQ_FALLBACK.get(symbol)
         if alt:
             try:
                 out = quote_stooq(alt)
-                warn("%s: 야후 실패 → stooq 로 대체" % symbol)
-            except Exception as e2:                     # noqa: BLE001
-                warn("%s: 야후·stooq 모두 실패 (%s / %s)" % (symbol, e, e2))
-        else:
-            warn("%s: 시세 수집 실패 (%s)" % (symbol, e))
+            except Exception as e:                      # noqa: BLE001
+                errs.append("stooq:" + str(e)[:60])
+
+    if out is None:
+        warn("%s 수집 실패 (%s)" % (symbol, " / ".join(errs)))
+
     _cache[symbol] = out
-    if out is not None:
-        time.sleep(0.35)
+    time.sleep(0.5 if out is None else 0.8)
     return out
 
 
@@ -424,6 +543,16 @@ def main():
            "updatedAt": datetime.now(KST).isoformat(timespec="seconds"),
            "homeIndices": cfg.get("home_indices", []),
            "calendar": cal.get("items", [])}
+
+    # 개별 호출은 요청 수가 많아 야후에 막힙니다(HTTP 429). 먼저 한 번에
+    # 묶어서 받아 캐시를 채우고, 못 받은 것만 아래에서 개별로 다시 시도합니다.
+    print("배치 조회…")
+    allsyms = []
+    for key in ("indices", "macro", "rates", "sectors", "crypto", "watchlist"):
+        allsyms += [s["symbol"] for s in cfg.get(key, []) if s.get("symbol")]
+    if cfg.get("sentiment", {}).get("symbol"):
+        allsyms.append(cfg["sentiment"]["symbol"])
+    batch_prefetch(allsyms)
 
     print("지수…")
     out["indices"] = simple_block(cfg.get("indices", []), prev.get("indices"),
