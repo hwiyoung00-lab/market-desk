@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-마켓 데스크 데이터 수집기.
+마켓 데스크 데이터 수집기 — 매크로 레짐 판단용.
 
 GitHub Actions 안에서 실행됩니다. 브라우저가 아니라 서버에서 돌기 때문에
 CORS 제약이 없고, 시세 수집에는 API 키가 필요 없습니다.
@@ -11,8 +11,12 @@ CORS 제약이 없고, 시세 수집에는 API 키가 필요 없습니다.
   data/latest.json     → 결과 (페이지가 이 파일 하나만 읽습니다)
   data/dart_corp.json  → DART 기업코드 캐시 (자동 생성)
 
-수집에 실패한 항목은 추정하지 않습니다. 직전 실행의 값을 그대로 두고
-stale 표시만 남깁니다 — 화면에 틀린 숫자가 뜨는 것보다 낫습니다.
+핵심은 '비율(ratio)'입니다. 두 자산의 상대강도가 시장이 무엇에 베팅하는지를
+가격보다 먼저 보여줍니다. 그 비율들의 최근 움직임을 지난 1년 분포에서
+백분위로 환산해 성장축·물가축 점수를 냅니다 — 예측이 아니라 현재 반영치의 요약.
+
+수집에 실패한 항목은 추정하지 않습니다. 직전 값을 그대로 두고 stale 표시만
+남깁니다 — 화면에 틀린 숫자가 뜨는 것보다 낫습니다.
 """
 
 import io
@@ -39,6 +43,9 @@ DART_MAP = os.path.join(ROOT, "data", "dart_corp.json")
 KST = timezone(timedelta(hours=9))
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/126.0 Safari/537.36")
+
+# 기간 = 거래일 수
+PERIODS = [("d1", 1), ("w1", 5), ("m1", 21), ("m3", 63), ("m6", 126)]
 
 warnings = []
 
@@ -96,12 +103,64 @@ def rnd(x, n=4):
     return None if x is None else round(float(x), n)
 
 
+def downsample(pairs, target=130):
+    """[(date, value)] 를 target 개 언저리로 솎아냅니다. 마지막 점은 항상 남깁니다."""
+    n = len(pairs)
+    if n <= target:
+        return pairs
+    step = n / float(target)
+    out = [pairs[int(i * step)] for i in range(target)]
+    if out[-1] != pairs[-1]:
+        out[-1] = pairs[-1]
+    return out
+
+
+def pct_change(hist, days):
+    """hist = [(date, close)] 오름차순. days 거래일 전 대비 % 변화."""
+    if not hist or len(hist) <= days:
+        return None
+    a, b = hist[-1 - days][1], hist[-1][1]
+    if not a:
+        return None
+    return (b - a) / a * 100.0
+
+
+def ytd_change(hist):
+    if not hist:
+        return None
+    year = hist[-1][0][:4]
+    base = None
+    for d, v in hist:
+        if d[:4] == year:
+            base = v
+            break
+    if not base:
+        return None
+    return (hist[-1][1] - base) / base * 100.0
+
+
+def returns_block(hist):
+    out = {k: rnd(pct_change(hist, n), 3) for k, n in PERIODS}
+    out["ytd"] = rnd(ytd_change(hist), 3)
+    return out
+
+
+def percentile_rank(values, x):
+    """values 분포에서 x 가 몇 백분위인지 (0~100)."""
+    vals = [v for v in values if v is not None]
+    if len(vals) < 20 or x is None:
+        return None
+    below = sum(1 for v in vals if v < x)
+    equal = sum(1 for v in vals if v == x)
+    return (below + equal / 2.0) / len(vals) * 100.0
+
+
 # ==========================================================================
 # 시세 — 야후 파이낸스 (키 불필요)
 # ==========================================================================
 
 YAHOO = ("https://query1.finance.yahoo.com/v8/finance/chart/"
-         "{sym}?range=1mo&interval=1d")
+         "{sym}?range=1y&interval=1d")
 
 STOOQ_FALLBACK = {
     "^GSPC": "^spx", "^IXIC": "^ndq", "^DJI": "^dji", "^RUT": "^rut",
@@ -112,20 +171,18 @@ STOOQ_FALLBACK = {
     "BTC-USD": "btcusd", "ETH-USD": "ethusd",
 }
 
-_cache = {}
+_cache = {}      # symbol -> {"hist": [(dateISO, close)], "currency": str} 또는 None
+
+BATCH = 20
 
 
 # --------------------------------------------------------------------------
 # 1순위: yfinance 배치 조회
 #
 # 종목마다 따로 부르면 요청이 수십 번이 되고, 야후는 데이터센터 IP(=GitHub
-# Actions)에 그 정도 빈도를 허용하지 않습니다 — HTTP 429 로 막힙니다.
+# Actions)에 그 빈도를 허용하지 않습니다 — HTTP 429 로 막힙니다.
 # yfinance 는 여러 종목을 한 번에 받아오고 쿠키·crumb 처리도 대신 해줍니다.
-# 이걸 먼저 돌려 캐시를 채우고, 실패한 것만 개별 경로로 넘깁니다.
 # --------------------------------------------------------------------------
-
-BATCH = 20
-
 
 def batch_prefetch(symbols):
     syms = [s for s in dict.fromkeys(symbols) if s]
@@ -141,9 +198,9 @@ def batch_prefetch(symbols):
     for i in range(0, len(syms), BATCH):
         chunk = syms[i:i + BATCH]
         try:
-            df = yf.download(chunk, period="1mo", interval="1d",
+            df = yf.download(chunk, period="1y", interval="1d",
                              group_by="ticker", auto_adjust=False,
-                             threads=False, progress=False, timeout=40)
+                             threads=False, progress=False, timeout=60)
         except Exception as e:                          # noqa: BLE001
             warn("배치 조회 실패 (%d개) — %s" % (len(chunk), e))
             time.sleep(3)
@@ -160,20 +217,13 @@ def batch_prefetch(symbols):
                     if sym not in df.columns.get_level_values(0):
                         continue
                     col = df[sym]["Close"]
-                ser = [(idx, float(v)) for idx, v in col.items()
-                       if v == v and v is not None]     # NaN 제외
-                if not ser:
+                hist = [(idx.strftime("%Y-%m-%d"), float(v))
+                        for idx, v in col.items()
+                        if v == v and v is not None]     # NaN 제외
+                if len(hist) < 2:
                     continue
-                price = ser[-1][1]
-                prev = ser[-2][1] if len(ser) >= 2 else None
-                _cache[sym] = {
-                    "price": price,
-                    "change": None if prev is None else price - prev,
-                    "pct": None if not prev else (price - prev) / prev * 100.0,
-                    "asof": ser[-1][0].strftime("%m.%d"),
-                    "currency": "KRW" if sym.endswith((".KS", ".KQ")) else "",
-                    "spark": [rnd(v, 4) for _, v in ser[-22:]],
-                }
+                _cache[sym] = {"hist": hist,
+                               "currency": "KRW" if sym.endswith((".KS", ".KQ")) else ""}
                 got += 1
             except Exception:                           # noqa: BLE001
                 continue
@@ -192,7 +242,7 @@ NAVER_ROW = re.compile(
 NAVER_INDEX = {"^KS11": "KOSPI", "^KQ11": "KOSDAQ"}
 
 
-def quote_naver(symbol):
+def hist_naver(symbol):
     if symbol in NAVER_INDEX:
         code = NAVER_INDEX[symbol]
     elif symbol.endswith((".KS", ".KQ")):
@@ -201,116 +251,103 @@ def quote_naver(symbol):
         raise ValueError("네이버 대상 아님")
 
     end = datetime.now(KST)
-    bgn = end - timedelta(days=45)
+    bgn = end - timedelta(days=400)
     txt = http_get(NAVER % (code, bgn.strftime("%Y%m%d"), end.strftime("%Y%m%d")),
-                   headers={"Referer": "https://finance.naver.com/"}
-                   ).decode("utf-8", "replace")
+                   headers={"Referer": "https://finance.naver.com/"},
+                   timeout=40).decode("utf-8", "replace")
     rows = NAVER_ROW.findall(txt)
-    if not rows:
+    if len(rows) < 2:
         raise ValueError("행 없음")
-    closes = [(r[0], float(r[4])) for r in rows]
-    price = closes[-1][1]
-    prev = closes[-2][1] if len(closes) >= 2 else None
-    d = closes[-1][0]
-    return {"price": price,
-            "change": None if prev is None else price - prev,
-            "pct": None if not prev else (price - prev) / prev * 100.0,
-            "asof": "%s.%s" % (d[4:6], d[6:8]),
-            "currency": "KRW",
-            "spark": [rnd(v, 4) for _, v in closes[-22:]]}
+    hist = [("%s-%s-%s" % (r[0][:4], r[0][4:6], r[0][6:8]), float(r[4])) for r in rows]
+    return {"hist": hist, "currency": "KRW"}
 
 
-def quote_yahoo(symbol):
-    raw = http_get(YAHOO.format(sym=urllib.parse.quote(symbol)))
+def hist_yahoo(symbol):
+    raw = http_get(YAHOO.format(sym=urllib.parse.quote(symbol)), timeout=40)
     doc = json.loads(raw.decode("utf-8"))
     res = (doc.get("chart") or {}).get("result") or []
     if not res:
         raise ValueError("빈 응답")
     r0 = res[0]
     meta = r0.get("meta") or {}
-
+    ts = r0.get("timestamp") or []
     closes = (((r0.get("indicators") or {}).get("quote") or [{}])[0]).get("close") or []
-    closes = [c for c in closes if c is not None]
-
-    price = meta.get("regularMarketPrice")
-    prev = meta.get("previousClose")
-    if prev is None:
-        prev = meta.get("chartPreviousClose")
-    if price is None and closes:
-        price = closes[-1]
-    if prev is None and len(closes) >= 2:
-        prev = closes[-2]
-    if price is None:
+    hist = []
+    for t, c in zip(ts, closes):
+        if c is None:
+            continue
+        hist.append((datetime.fromtimestamp(t, KST).strftime("%Y-%m-%d"), float(c)))
+    if len(hist) < 2:
         raise ValueError("가격 없음")
-
-    ts = meta.get("regularMarketTime")
-    asof = datetime.fromtimestamp(ts, KST).strftime("%m.%d") if ts \
-        else datetime.now(KST).strftime("%m.%d")
-
-    spark = [rnd(c, 4) for c in closes[-22:]]
-
-    return {"price": price,
-            "change": None if prev is None else price - prev,
-            "pct": None if not prev else (price - prev) / prev * 100.0,
-            "asof": asof, "currency": meta.get("currency") or "",
-            "spark": spark}
+    return {"hist": hist, "currency": meta.get("currency") or ""}
 
 
-def quote_stooq(stooq_sym):
-    url = "https://stooq.com/q/l/?s=%s&f=sd2t2ohlcv&h&e=csv" % stooq_sym
-    lines = http_get(url).decode("utf-8", "replace").strip().splitlines()
-    if len(lines) < 2:
+def hist_stooq(stooq_sym):
+    url = "https://stooq.com/q/d/l/?s=%s&i=d" % stooq_sym
+    lines = http_get(url, timeout=40).decode("utf-8", "replace").strip().splitlines()
+    if len(lines) < 3:
         raise ValueError("빈 CSV")
-    rec = dict(zip([h.strip().lower() for h in lines[0].split(",")],
-                   lines[1].split(",")))
-    close, open_ = rec.get("close"), rec.get("open")
-    if not close or close.upper() == "N/D":
+    head = [h.strip().lower() for h in lines[0].split(",")]
+    di, ci = head.index("date"), head.index("close")
+    hist = []
+    for ln in lines[1:]:
+        p = ln.split(",")
+        try:
+            hist.append((p[di], float(p[ci])))
+        except (ValueError, IndexError):
+            continue
+    if len(hist) < 2:
         raise ValueError("값 없음")
-    price = float(close)
-    prev = float(open_) if open_ and open_.upper() != "N/D" else None
-    return {"price": price,
-            "change": None if prev is None else price - prev,
-            "pct": None if not prev else (price - prev) / prev * 100.0,
-            "asof": (rec.get("date") or "")[5:].replace("-", ".") or
-                    datetime.now(KST).strftime("%m.%d"),
-            "currency": "", "spark": []}
+    return {"hist": hist[-260:], "currency": ""}
 
 
-def quote(symbol):
+def series(symbol):
     """배치 캐시 → 네이버(한국) → 야후 → stooq 순. 전부 실패하면 None."""
     if symbol in _cache:
         return _cache[symbol]
 
-    errs = []
-    out = None
+    errs, out = [], None
     kr = symbol.endswith((".KS", ".KQ")) or symbol in NAVER_INDEX
 
     if kr:
         try:
-            out = quote_naver(symbol)
+            out = hist_naver(symbol)
         except Exception as e:                          # noqa: BLE001
-            errs.append("네이버:" + str(e)[:60])
-
+            errs.append("네이버:" + str(e)[:50])
     if out is None:
         try:
-            out = quote_yahoo(symbol)
+            out = hist_yahoo(symbol)
         except Exception as e:                          # noqa: BLE001
-            errs.append("야후:" + str(e)[:60])
-
+            errs.append("야후:" + str(e)[:50])
     if out is None:
         alt = STOOQ_FALLBACK.get(symbol)
         if alt:
             try:
-                out = quote_stooq(alt)
+                out = hist_stooq(alt)
             except Exception as e:                      # noqa: BLE001
-                errs.append("stooq:" + str(e)[:60])
-
+                errs.append("stooq:" + str(e)[:50])
     if out is None:
         warn("%s 수집 실패 (%s)" % (symbol, " / ".join(errs)))
 
     _cache[symbol] = out
     time.sleep(0.5 if out is None else 0.8)
     return out
+
+
+def quote(symbol):
+    """마지막 값 + 전일대비 + 스파크라인."""
+    s = series(symbol)
+    if not s:
+        return None
+    h = s["hist"]
+    price, prev = h[-1][1], h[-2][1]
+    return {"price": price,
+            "change": price - prev,
+            "pct": None if not prev else (price - prev) / prev * 100.0,
+            "asof": h[-1][0][5:].replace("-", "."),
+            "currency": s["currency"],
+            "spark": [rnd(v, 4) for _, v in downsample(h[-22:], 22)],
+            "hist": h}
 
 
 # ==========================================================================
@@ -330,15 +367,13 @@ def collect_fng():
         score = f.get("score")
         if score is None:
             raise ValueError("score 없음")
-        ts = f.get("timestamp")
-        asof = ""
+        ts, asof = f.get("timestamp"), ""
         if ts:
             try:
                 asof = datetime.fromtimestamp(float(ts) / 1000, KST).strftime("%m.%d")
             except Exception:                           # noqa: BLE001
                 asof = ""
-        return {"value": rnd(score, 1), "label": f.get("rating") or "",
-                "asof": asof,
+        return {"value": rnd(score, 1), "label": f.get("rating") or "", "asof": asof,
                 "prevClose": rnd(f.get("previous_close"), 1),
                 "prevWeek": rnd(f.get("previous_1_week"), 1),
                 "prevMonth": rnd(f.get("previous_1_month"), 1)}
@@ -359,19 +394,15 @@ DART_VIEW = "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=%s"
 
 
 def dart_corp_map(key, stock_codes):
-    """종목코드 → DART 기업코드. 한 번 받아 캐시하고 재사용합니다."""
     cached = load_json(DART_MAP, {}) or {}
     missing = [c for c in stock_codes if c not in cached]
     if not missing:
         return cached
-
     print("  DART 기업코드 내려받는 중 (%d개 신규)…" % len(missing))
     try:
         raw = http_get(DART_CORP_ZIP % key, timeout=60)
-        # 오류 시 zip 이 아니라 JSON 이 옵니다.
         if raw[:2] != b"PK":
-            msg = raw[:200].decode("utf-8", "replace")
-            raise ValueError("zip 이 아님 — %s" % msg)
+            raise ValueError("zip 이 아님 — %s" % raw[:200].decode("utf-8", "replace"))
         with zipfile.ZipFile(io.BytesIO(raw)) as z:
             name = next(n for n in z.namelist() if n.lower().endswith(".xml"))
             xml = z.read(name)
@@ -398,7 +429,6 @@ def collect_dart(watch_cfg, days):
     if not key:
         print("  DART 키 없음 — 공시 수집 건너뜀 (선택 기능)")
         return []
-
     kr = [w for w in watch_cfg if w["symbol"].endswith((".KS", ".KQ"))]
     codes = {w["symbol"].split(".")[0]: w["name"] for w in kr}
     if not codes:
@@ -414,32 +444,27 @@ def collect_dart(watch_cfg, days):
             continue
         try:
             doc = json.loads(http_get(
-                DART_LIST % (key, corp,
-                             bgn.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
+                DART_LIST % (key, corp, bgn.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
             ).decode("utf-8"))
         except Exception as e:                          # noqa: BLE001
             warn("DART 공시 조회 실패 (%s): %s" % (name, e))
             continue
-
         status = str(doc.get("status", ""))
-        if status == "013":          # 조회 결과 없음 — 정상입니다.
+        if status == "013":
             continue
         if status != "000":
             warn("DART 응답 코드 %s (%s) — %s" % (status, name, doc.get("message", "")))
             continue
-
         for it in (doc.get("list") or [])[:5]:
             d = it.get("rcept_dt") or ""
             out.append({
-                "name": name,
-                "code": stock_code,
+                "name": name, "code": stock_code,
                 "date": "%s-%s-%s" % (d[0:4], d[4:6], d[6:8]) if len(d) == 8 else d,
                 "title": (it.get("report_nm") or "").strip(),
                 "filer": (it.get("flr_nm") or "").strip(),
                 "url": DART_VIEW % (it.get("rcept_no") or ""),
             })
         time.sleep(0.3)
-
     out.sort(key=lambda x: x["date"], reverse=True)
     return out[:40]
 
@@ -450,8 +475,17 @@ def collect_dart(watch_cfg, days):
 
 GNEWS = "https://news.google.com/rss/search?q={q}&hl=ko&gl=KR&ceid=KR:ko"
 TAG = re.compile(r"<[^>]+>")
+ENT = {"&nbsp;": " ", "&amp;": "&", "&lt;": "<", "&gt;": ">",
+       "&quot;": '"', "&#39;": "'", "&apos;": "'"}
 MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def unescape(s):
+    for k, v in ENT.items():
+        s = s.replace(k, v)
+    s = re.sub(r"&#(\d+);", lambda m: chr(int(m.group(1))), s)
+    return re.sub(r"\s+", " ", s).strip()
 
 
 def collect_news(queries, per_query):
@@ -464,12 +498,11 @@ def collect_news(queries, per_query):
         except Exception as e:                          # noqa: BLE001
             warn("뉴스 '%s' 수집 실패 (%s)" % (q, e))
             continue
-
         got = 0
         for it in root.iterfind(".//item"):
             if got >= per_query:
                 break
-            title = (it.findtext("title") or "").strip()
+            title = unescape(it.findtext("title") or "")
             link = (it.findtext("link") or "").strip()
             if not title or title in seen:
                 continue
@@ -484,12 +517,13 @@ def collect_news(queries, per_query):
             elif " - " in title:
                 title, source = [s.strip() for s in title.rsplit(" - ", 1)]
 
-            body = re.sub(r"\s+", " ", TAG.sub(" ", it.findtext("description") or "")).strip()
+            body = unescape(TAG.sub(" ", it.findtext("description") or ""))
             if source and body.endswith(source):
                 body = body[: -len(source)].strip()
 
             date = ""
-            m = re.search(r"(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})", it.findtext("pubDate") or "")
+            m = re.search(r"(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})",
+                          it.findtext("pubDate") or "")
             if m and m.group(2) in MONTHS:
                 date = "%02d.%02d" % (MONTHS.index(m.group(2)) + 1, int(m.group(1)))
 
@@ -514,8 +548,7 @@ def carry(prev_list, name):
     return None
 
 
-def simple_block(specs, prev_list, extra=None):
-    """이름·심볼만 있는 목록(섹터·크립토 등)을 공통으로 처리합니다."""
+def block(specs, prev_list, extra=None, with_returns=False):
     out = []
     for s in specs:
         q = quote(s["symbol"])
@@ -524,14 +557,127 @@ def simple_block(specs, prev_list, extra=None):
             if old:
                 out.append(old)
             continue
-        row = {"name": s["name"], "symbol": s["symbol"],
-               "dp": s.get("dp", 2),
+        row = {"name": s["name"], "symbol": s["symbol"], "dp": s.get("dp", 2),
                "value": rnd(q["price"]), "change": rnd(q["change"]),
                "pct": rnd(q["pct"], 3), "asof": q["asof"], "spark": q["spark"]}
+        if with_returns:
+            row["ret"] = returns_block(q["hist"])
         if extra:
             row.update({k: s.get(k) for k in extra})
         out.append(row)
     return out
+
+
+def build_ratios(cfg, prev):
+    """비율선. 두 종목의 날짜를 맞춰 나눈 시계열입니다."""
+    out = []
+    for spec in cfg.get("ratios", []):
+        a, b = series(spec["num"]), series(spec["den"])
+        if not a or not b:
+            old = carry(prev.get("ratios"), spec["name"])
+            if old:
+                out.append(old)
+            continue
+        bmap = dict(b["hist"])
+        pairs = [(d, v / bmap[d]) for d, v in a["hist"] if bmap.get(d)]
+        if len(pairs) < 30:
+            continue
+        ser = downsample(pairs, 130)
+        out.append({
+            "name": spec["name"], "num": spec["num"], "den": spec["den"],
+            "axis": spec.get("axis", "-"),
+            "up": spec.get("up", ""), "down": spec.get("down", ""),
+            "note": spec.get("note", ""),
+            "asof": pairs[-1][0][5:].replace("-", "."),
+            "ret": returns_block(pairs),
+            "dates": [d[5:] for d, _ in ser],
+            "vals": [rnd(v, 6) for _, v in ser],
+            "_full": pairs,          # 레짐 계산용 (JSON 저장 전에 제거)
+        })
+    return out
+
+
+def regime_score(ratios, names, lookback):
+    """
+    각 비율의 '최근 lookback일 변화율'을 그 비율이 지난 1년간 보여온 변동 크기로
+    나눠 -100~+100 으로 환산하고 평균냅니다.
+
+    평균을 빼지 않는(=0 기준) 이유: 추세가 꾸준한 비율도 제대로 +로 잡히게 하기
+    위해서입니다. 평균 대비로 재면 1년 내내 오른 비율이 '평범함(0점)'으로
+    나와버려, 정작 중요한 지속적 우위를 놓칩니다.
+    변동 크기로 나누므로 자산마다 변동성이 달라도 같은 잣대가 됩니다.
+    백분위(pct)는 참고용으로 같이 담습니다.
+    """
+    parts, used = [], []
+    for r in ratios:
+        if r["name"] not in names or "_full" not in r:
+            continue
+        full = r["_full"]
+        if len(full) < lookback + 30:
+            continue
+        chgs = []
+        for i in range(lookback, len(full)):
+            a, b = full[i - lookback][1], full[i][1]
+            if a:
+                chgs.append((b - a) / a * 100.0)
+        if len(chgs) < 30:
+            continue
+        cur = chgs[-1]
+        rms = (sum(x * x for x in chgs) / len(chgs)) ** 0.5
+        if rms <= 0:
+            continue
+        score = max(-100.0, min(100.0, cur / rms * 60.0))
+        parts.append(score)
+        used.append({"name": r["name"], "chg": rnd(cur, 2),
+                     "pct": rnd(percentile_rank(chgs, cur), 1),
+                     "score": rnd(score, 1)})
+    if not parts:
+        return None, used
+    return rnd(sum(parts) / len(parts), 1), used
+
+
+QUADRANTS = {
+    ("up", "down"): {
+        "label": "회복 · 골디락스",
+        "desc": "성장은 살아나는데 물가 압력은 눌려 있는 국면. 역사적으로 위험자산 전반, 특히 기술·성장주와 소형주가 유리했던 구간입니다.",
+        "good": ["기술·성장주", "소형주", "경기소비재", "하이일드"],
+        "bad": ["필수소비재", "유틸리티", "금", "현금"],
+    },
+    ("up", "up"): {
+        "label": "확장 · 과열",
+        "desc": "성장과 물가가 함께 오르는 국면. 실물·가격 전가력이 있는 쪽이 유리하고, 장기채는 금리 상승에 불리합니다.",
+        "good": ["에너지", "소재·산업재", "원자재", "가치주"],
+        "bad": ["장기국채", "고밸류 성장주", "리츠"],
+    },
+    ("down", "up"): {
+        "label": "스태그플레이션",
+        "desc": "성장은 꺾이는데 물가는 안 잡히는 국면. 가장 다루기 까다로운 구간으로, 주식·채권이 동시에 부진할 수 있습니다.",
+        "good": ["금", "에너지", "현금·단기채", "물가연동채"],
+        "bad": ["경기소비재", "소형주", "장기국채", "하이일드"],
+    },
+    ("down", "down"): {
+        "label": "둔화 · 침체",
+        "desc": "성장과 물가가 함께 내려가는 국면. 금리 인하 기대가 붙으면서 듀레이션이 긴 안전자산이 유리해집니다.",
+        "good": ["장기국채", "유틸리티", "필수소비재", "헬스케어"],
+        "bad": ["소형주", "에너지", "경기민감주", "하이일드"],
+    },
+}
+
+
+def build_regime(cfg, ratios):
+    rc = cfg.get("regime", {})
+    lb = int(rc.get("lookback_days", 63))
+    g, g_used = regime_score(ratios, set(rc.get("growth", [])), lb)
+    i, i_used = regime_score(ratios, set(rc.get("inflation", [])), lb)
+    if g is None or i is None:
+        return None
+    q = QUADRANTS[("up" if g >= 0 else "down", "up" if i >= 0 else "down")]
+    return {"growth": g, "inflation": i, "lookbackDays": lb,
+            "growthParts": g_used, "inflationParts": i_used,
+            "quadrant": q["label"], "desc": q["desc"],
+            "good": q["good"], "bad": q["bad"],
+            "quadrants": [{"key": k[0] + "|" + k[1], "label": v["label"]}
+                          for k, v in QUADRANTS.items()]}
 
 
 def main():
@@ -542,31 +688,30 @@ def main():
     out = {"site": cfg.get("site", {}),
            "updatedAt": datetime.now(KST).isoformat(timespec="seconds"),
            "homeIndices": cfg.get("home_indices", []),
-           "calendar": cal.get("items", [])}
+           "calendar": cal.get("items", []),
+           "periods": [p[0] for p in PERIODS] + ["ytd"]}
 
-    # 개별 호출은 요청 수가 많아 야후에 막힙니다(HTTP 429). 먼저 한 번에
-    # 묶어서 받아 캐시를 채우고, 못 받은 것만 아래에서 개별로 다시 시도합니다.
     print("배치 조회…")
     allsyms = []
-    for key in ("indices", "macro", "rates", "sectors", "crypto", "watchlist"):
+    for key in ("indices", "macro", "rates", "sectors", "crypto",
+                "watchlist", "cross_assets"):
         allsyms += [s["symbol"] for s in cfg.get(key, []) if s.get("symbol")]
+    for r in cfg.get("ratios", []):
+        allsyms += [r["num"], r["den"]]
     if cfg.get("sentiment", {}).get("symbol"):
         allsyms.append(cfg["sentiment"]["symbol"])
     batch_prefetch(allsyms)
 
     print("지수…")
-    out["indices"] = simple_block(cfg.get("indices", []), prev.get("indices"),
-                                  extra=["group"])
-
+    out["indices"] = block(cfg.get("indices", []), prev.get("indices"),
+                           extra=["group"], with_returns=True)
     print("환율·원자재…")
-    out["macro"] = simple_block(cfg.get("macro", []), prev.get("macro"),
-                                extra=["unit", "prefix", "suffix"])
-
+    out["macro"] = block(cfg.get("macro", []), prev.get("macro"),
+                         extra=["unit", "prefix", "suffix"], with_returns=True)
     print("금리…")
-    out["rates"] = simple_block(cfg.get("rates", []), prev.get("rates"),
-                                extra=["years"])
+    out["rates"] = block(cfg.get("rates", []), prev.get("rates"), extra=["years"])
 
-    print("스프레드 계산…")
+    print("스프레드…")
     by_sym = {r["symbol"]: r for r in out["rates"] if r.get("value") is not None}
     out["spreads"] = []
     for sp in cfg.get("spreads", []):
@@ -578,10 +723,21 @@ def main():
                                "asof": a.get("asof", "")})
 
     print("섹터…")
-    out["sectors"] = simple_block(cfg.get("sectors", []), prev.get("sectors"))
-
+    out["sectors"] = block(cfg.get("sectors", []), prev.get("sectors"),
+                           extra=["cyc"], with_returns=True)
+    print("크로스에셋…")
+    out["assets"] = block(cfg.get("cross_assets", []), prev.get("assets"),
+                          extra=["group"], with_returns=True)
     print("크립토…")
-    out["crypto"] = simple_block(cfg.get("crypto", []), prev.get("crypto"))
+    out["crypto"] = block(cfg.get("crypto", []), prev.get("crypto"))
+
+    print("비율선…")
+    ratios = build_ratios(cfg, prev)
+    print("레짐 판정…")
+    out["regime"] = build_regime(cfg, ratios) or (prev.get("regime"))
+    for r in ratios:
+        r.pop("_full", None)
+    out["ratios"] = ratios or (prev.get("ratios") or [])
 
     print("시장심리…")
     s = cfg.get("sentiment", {})
@@ -613,7 +769,8 @@ def main():
             "market": spec.get("market", ""), "tag": spec.get("tag", ""),
             "currency": q["currency"] or ("KRW" if krw else "USD"),
             "value": rnd(q["price"]), "change": rnd(q["change"]),
-            "pct": rnd(q["pct"], 3), "asof": q["asof"], "spark": q["spark"]})
+            "pct": rnd(q["pct"], 3), "asof": q["asof"], "spark": q["spark"],
+            "ret": returns_block(q["hist"])})
 
     print("뉴스…")
     news = collect_news(cfg.get("news_queries", []),
@@ -635,13 +792,17 @@ def main():
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(out, f, ensure_ascii=False, indent=1)
+        json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
 
-    print("\n완료 — 지수 %d · 매크로 %d · 금리 %d · 섹터 %d · 관심종목 %d "
+    reg = out.get("regime") or {}
+    print("\n완료 — 지수 %d · 섹터 %d · 크로스에셋 %d · 비율 %d · 관심종목 %d "
           "· 뉴스 %d · 공시 %d · 경고 %d"
-          % (len(out["indices"]), len(out["macro"]), len(out["rates"]),
-             len(out["sectors"]), len(out["watchlist"]), len(out["news"]),
+          % (len(out["indices"]), len(out["sectors"]), len(out["assets"]),
+             len(out["ratios"]), len(out["watchlist"]), len(out["news"]),
              len(out["filings"]), len(warnings)))
+    if reg:
+        print("레짐: %s (성장 %+.0f / 물가 %+.0f)"
+              % (reg.get("quadrant", "?"), reg.get("growth", 0), reg.get("inflation", 0)))
 
     if not out["indices"] and not out["watchlist"]:
         print("수집된 시세가 하나도 없습니다.", file=sys.stderr)
