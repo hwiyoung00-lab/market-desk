@@ -3,7 +3,7 @@
   "title": "휘영 마켓 데스크",
   "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정"
  },
- "updatedAt": "2026-09-07T16:09:28+09:00",
+ "updatedAt": "2026-09-08T07:03:51+09:00",
  "homeIndices": [
   "^KS11",
   "^KQ11",
@@ -55,10 +55,10 @@
    "name": "코스피",
    "symbol": "^KS11",
    "dp": 2,
-   "value": 6995.3901,
-   "change": 308.1802,
-   "pct": 4.609,
-   "asof": "09.07",
+   "value": 6687.21,
+   "change": 107.73,
+   "pct": 1.637,
+   "asof": "09.04",
    "spark": [
     6258.77,
     6299.6602,
@@ -79,8 +79,7 @@
     6835.7998,
     6562.7202,
     6579.48,
-    6687.21,
-    6995.3901
+    6687.21
    ],
    "group": "아시아"
   },
@@ -88,10 +87,10 @@
    "name": "코스닥",
    "symbol": "^KQ11",
    "dp": 2,
-   "value": 822.19,
-   "change": 8.69,
-   "pct": 1.068,
-   "asof": "09.07",
+   "value": 813.5,
+   "change": 23.29,
+   "pct": 2.947,
+   "asof": "09.04",
    "spark": [
     798.81,
     854.47,
@@ -112,8 +111,7 @@
     821.25,
     803.98,
     790.21,
-    813.5,
-    822.19
+    813.5
    ],
    "group": "아시아"
   },
@@ -121,10 +119,10 @@
    "name": "닛케이 225",
    "symbol": "^N225",
    "dp": 0,
-   "value": 66399.8438,
-   "change": 1378.9023,
-   "pct": 2.121,
-   "asof": "09.07",
+   "value": 65020.9414,
+   "change": 806.4609,
+   "pct": 1.256,
+   "asof": "09.04",
    "spark": [
     65606.7109,
     66970.2188,
@@ -145,8 +143,7 @@
     66215.3438,
     64325.6406,
     64214.4805,
-    65020.9414,
-    66399.8438
+    65020.9414
    ],
    "group": "아시아"
   },
@@ -154,10 +151,10 @@
    "name": "항셍",
    "symbol": "^HSI",
    "dp": 0,
-   "value": 25459.7207,
-   "change": -191.1484,
-   "pct": -0.745,
-   "asof": "09.07",
+   "value": 25650.8691,
+   "change": 437.5586,
+   "pct": 1.735,
+   "asof": "09.04",
    "spark": [
     25668.0293,
     25937.4902,
@@ -179,8 +176,7 @@
     25329.7305,
     25311.2109,
     25213.3105,
-    25650.8691,
-    25459.7207
+    25650.8691
    ],
    "group": "아시아"
   },
@@ -188,10 +184,10 @@
    "name": "상하이종합",
    "symbol": "000001.SS",
    "dp": 2,
-   "value": 3933.8074,
-   "change": 3.6914,
-   "pct": 0.094,
-   "asof": "09.07",
+   "value": 3930.116,
+   "change": -11.9719,
+   "pct": -0.304,
+   "asof": "09.04",
    "spark": [
     3940.0371,
     3966.594,
@@ -213,8 +209,7 @@
     3979.8879,
     3941.386,
     3942.0879,
-    3930.116,
-    3933.8074
+    3930.116
    ],
    "group": "아시아"
   },
@@ -393,9 +388,9 @@
    "name": "원/달러",
    "symbol": "KRW=X",
    "dp": 2,
-   "value": 1343.2,
-   "change": -12.2101,
-   "pct": -0.901,
+   "value": 1345.05,
+   "change": -10.36,
+   "pct": -0.764,
    "asof": "09.07",
    "spark": [
     1422.3,
@@ -419,7 +414,7 @@
     1372.86,
     1358.39,
     1355.41,
-    1343.2
+    1345.05
    ],
    "unit": "",
    "prefix": null,
@@ -429,9 +424,9 @@
    "name": "엔/달러",
    "symbol": "JPY=X",
    "dp": 2,
-   "value": 155.838,
-   "change": 0.178,
-   "pct": 0.114,
+   "value": 154.345,
+   "change": -1.315,
+   "pct": -0.845,
    "asof": "09.07",
    "spark": [
     158.409,
@@ -455,7 +450,7 @@
     160.196,
     158.923,
     155.66,
-    155.838
+    154.345
    ],
    "unit": "",
    "prefix": null,
@@ -465,9 +460,9 @@
    "name": "달러인덱스",
    "symbol": "DX-Y.NYB",
    "dp": 2,
-   "value": 99.12,
-   "change": -0.04,
-   "pct": -0.04,
+   "value": 99.176,
+   "change": 0.016,
+   "pct": 0.016,
    "asof": "09.07",
    "spark": [
     99.6,
@@ -491,7 +486,7 @@
     99.56,
     99.0,
     99.16,
-    99.12
+    99.176
    ],
    "unit": "DXY",
    "prefix": null,
@@ -1269,9 +1264,9 @@
    "name": "비트코인",
    "symbol": "BTC-USD",
    "dp": 0,
-   "value": 79670.9766,
-   "change": -679.0703,
-   "pct": -0.845,
+   "value": 79155.1797,
+   "change": -1194.8672,
+   "pct": -1.487,
    "asof": "09.07",
    "spark": [
     64506.2539,
@@ -1295,16 +1290,16 @@
     79671.9688,
     79823.8672,
     80350.0469,
-    79670.9766
+    79155.1797
    ]
   },
   {
    "name": "이더리움",
    "symbol": "ETH-USD",
    "dp": 2,
-   "value": 2500.1799,
-   "change": -14.3689,
-   "pct": -0.571,
+   "value": 2487.46,
+   "change": -27.0889,
+   "pct": -1.077,
    "asof": "09.07",
    "spark": [
     1912.2021,
@@ -1328,15 +1323,15 @@
     2456.0781,
     2480.7356,
     2514.5488,
-    2500.1799
+    2487.46
    ]
   }
  ],
  "sentiment": {
   "avg10y": 19.72,
   "note": "VIX 10년 중앙값은 약 19.7입니다. 이보다 낮으면 시장이 편안하다는 뜻이지만, 유가와 장기금리가 동시에 오르는 국면에서는 낮은 VIX가 오히려 방심 신호일 수 있습니다.",
-  "vix": 14.53,
-  "asof": "09.04",
+  "vix": 15.3,
+  "asof": "09.07",
   "spark": [
    14.9,
    15.46,
@@ -1358,7 +1353,8 @@
    16.34,
    15.2,
    14.32,
-   14.53
+   14.53,
+   15.3
   ],
   "fng": {
    "value": 41.9,
@@ -1727,73 +1723,73 @@
  "news": [
   {
    "kicker": "KR",
-   "title": "[증시 레이더] 코스피 4.61% 급등 6,995⋯삼성전자 '27만전자'",
-   "body": "[증시 레이더] 코스피 4.61% 급등 6,995⋯삼성전자 '27만전자' &nbsp;&nbsp;",
-   "source": "포커스온경제 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE12cU1KQzZRQkR0Nm8wZEV0QmVGbkRaLS1qc2pIRUV4dlU5NXlaTWV5OFM2S3ZUT3dlZ0ZkWndlb0lwcGRvZS1ENU9IQ1RFTWswXzlmNFFrS0FFWWkySUE?oc=5"
+   "title": "“코스피 수익 기준으로 역사점 저점 지나고 있어, 연말 전 9300 뚫을 것” - 조선비즈",
+   "body": "“코스피 수익 기준으로 역사점 저점 지나고 있어, 연말 전 9300 뚫을 것” - 조선비즈 &nbsp;&nbsp;",
+   "source": "biz.chosun.com · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNN1U5bHhFS2g1djdFdXhpQ0tRdVBtSURoZnNFMWwxdlZ2S2lIcDFnT2dNTmg4WEE1ZkJmanY5Y3d5aEI5djBRWFRHRXU1LU5CWHo0a2trZW9VVmNZTTNvQ2RvVG9mdU81R2h5Y244S3BkNy1wejFDdm1QU0VxZ050UjBkei1Icmdj0gGcAUFVX3lxTFBaUEVkcnkydVBZel9VRmZEQWw5X2RTRHFMOU9icFdiemVnc3ZpalhNX3EyNmhDd0M5Ymg2Unp1MUo5RDRsengyakpqck1VYzZmcDRWN1B5MlF3VzRIZndCSktpb3VySGYwbVlaV3RkSkQ3YTFNeEd4NmZRcnhuazNWdWZKVWpfcHJlT29qMC02azA0WEZxQUtjaUZkYw?oc=5"
   },
   {
    "kicker": "KR",
-   "title": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합)",
-   "body": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합) &nbsp;&nbsp;",
-   "source": "연합뉴스 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5SVnYzTmdfTHpGS2pETUtPQkJRdmxSY3h4OUxOQXJmVVpDcEVxZEFhTzJlQUxnZkhaejBKaUF2V1VVTzBWYWFYemt0cXZjOVh1SmdDTV9iWnd3Q3JLT25SUdIBYEFVX3lxTE5SVnYzTmdfTHpGS2pETUtPQkJRdmxSY3h4OUxOQXJmVVpDcEVxZEFhTzJlQUxnZkhaejBKaUF2V1VVTzBWYWFYemt0cXZjOVh1SmdDTV9iWnd3Q3JLT25SUQ?oc=5"
+   "title": "롤러 코스피! 한국 증시…이재명 정부, 어떻게 헤쳐 나가야 하나? [국제경제읽기 한상춘]",
+   "body": "롤러 코스피! 한국 증시…이재명 정부, 어떻게 헤쳐 나가야 하나? [국제경제읽기 한상춘] &nbsp;&nbsp;",
+   "source": "v.daum.net · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE9WcWw5SjJGQkwzV2lDcC1QNkNfcC1zSkx1M1pEdHFNSmR5VGt5bFFNOUxqcHk5ME82SXdSVk5aNGgxV2huM0E?oc=5"
   },
   {
    "kicker": "FX",
-   "title": "코스피 3%대 상승 출발...원·달러 환율 장중 1,330원대",
-   "body": "코스피 3%대 상승 출발...원·달러 환율 장중 1,330원대 &nbsp;&nbsp;",
+   "title": "원·달러 환율 장중 1,330원대...1년 11개월 만에 최저",
+   "body": "원·달러 환율 장중 1,330원대...1년 11개월 만에 최저 &nbsp;&nbsp;",
    "source": "YTN · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA5YTBRT3ZzMEhOOFpZdU8tekFHQkJqbmJFUC1mVUdUUzdmTE1qaDU0Yzd0Z1ktbW14NURaZmVCbGhwQnpyazBhYUhJTUU4SzJELXIwakRnY28xNVlVVlpSUHpYa3FZTllOTHdyNlpvMA?oc=5"
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTFBMYzlvNWRleURkSURhWC1tT2FpNjZuZU9kbUxiQ1g4QTR6UzR2Tmg0dHljVmtEbzlsVVpPSF81LTFKWndLZENWUG9PaDdzZVYxV29UOEhocWRIZUIxSFE?oc=5"
   },
   {
    "kicker": "FX",
-   "title": "[외환] 원/달러 환율 9.9원 내린 1,340.5원(15:30 기준가)",
-   "body": "[외환] 원/달러 환율 9.9원 내린 1,340.5원(15:30 기준가) &nbsp;&nbsp;",
-   "source": "매일경제 마켓 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTE5uUFlXVVBlUWhxalVsRURmMjFzcW94LXdEN2o0aW1wbFFUdDNBb3hhS3NPWV8xcGVWaVVhcVFNVWtNY1ZRQmcyUWdiRVlKLTdfTGc?oc=5"
+   "title": "약 2년 만에 원·달러 환율 1,330원대 진입",
+   "body": "약 2년 만에 원·달러 환율 1,330원대 진입 &nbsp;&nbsp;",
+   "source": "연합뉴스TV · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE15aGlvTTM2UVozTndvQTVYd20yUXNHTWJ3OERUQ21HcnIyUV9LTm1aX2xLMUVEQ2FQSjBLd3FQZWRBbEh0SG1Zb3BMT19nbzRXWktyX3NzUlNCSUNqb19mMFdJVUdHNlk?oc=5"
   },
   {
    "kicker": "US",
-   "title": "[뉴스프레소] 뉴욕증시 동반 하락…강한 고용에 금리인상 우려 재확대 - 머니투데이",
-   "body": "[뉴스프레소] 뉴욕증시 동반 하락…강한 고용에 금리인상 우려 재확대 - 머니투데이 &nbsp;&nbsp;",
-   "source": "머니투데이 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBRQ1YtSHJmdUVOYThTQmI4OFIwcFBpcy1xQjY5SndlVmc2OUNzXzFPeTFoVjY0dHF6d0tibWF2ZFE3MHRTdm9RRDdzemFweEZBSHZXS1JMOW50SUZ6Wkk1V09MX1BUandkT2F5VVRn0gFuQVVfeXFMUFFDVi1IcmZ1RU5hOFNCYjg4UjBwUGlzLXFCNjlKd2VWZzY5Q3NfMU95MWhWNjR0cXp3S2JtYXZkUTcwdFN2b1FEN3N6YXB4RkFIdldLUkw5bnRJRnpaSTVXT0xfUFRqd2RPYXlVVGc?oc=5"
+   "title": "[0907마감체크] 코스피, 오픈AI發 훈풍에 4%대 급등... 7000선 눈앞",
+   "body": "[0907마감체크] 코스피, 오픈AI發 훈풍에 4%대 급등... 7000선 눈앞 &nbsp;&nbsp;",
+   "source": "인포스탁데일리 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFAxZE9PQ3MyOVNPSGM5QmFXREM0YmV6SUo5a1p2ejlCdFgwUm43dE1mQ2RRa1NRd1JnMHRoYzNLcVNlaHlzM2xaM3ZESDQ2ZFFpQzVvVkI3THQ2bG83dVQyLUQ4X1hMay10SXJ1eFNLeXF5TWRqNUE?oc=5"
   },
   {
    "kicker": "US",
-   "title": "09/07 [뉴욕증시 마감브리핑]",
-   "body": "09/07 [뉴욕증시 마감브리핑] &nbsp;&nbsp;",
-   "source": "네이버 프리미엄콘텐츠 · 09.06",
-   "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSk1YRm9hRFpTZFdtcEczTUotbkZPbi1UeEpwaDMzd243MU0yNFZlQXVSckNiMHZrbG0zTUdCQkNKWTFqRGg1TWFoYVY1ak8zbEtGUi1ueFRyeG9yZTc5Y0tkZXh4ajZCSFctUngyb3d3dFR0SzVoMGJJYlZHN3pPa2lxTXAyVEpLUUNB?oc=5"
+   "title": "뉴욕증시 노동절 휴장, 미 증시 문 닫는다… 해외선물 마감시간은?",
+   "body": "뉴욕증시 노동절 휴장, 미 증시 문 닫는다… 해외선물 마감시간은? &nbsp;&nbsp;",
+   "source": "gukjenews.com · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE9LYVhPbTBlbEdYTVpXVWZXSmh6OGxjbHM2WW1TRzA0TmMxeUZDYmNXVGVZT1I1bkJfU0xiU1h3cW1Ld1B6M1EtQ2ZObGs3U3lnSEd0QlZwaG52SUhYNmpVTUk3S29mbUNBWFRObGRn?oc=5"
   },
   {
    "kicker": "OIL",
-   "title": "[원자재 시황] 미 고용지표 호조에 금값 하락",
-   "body": "[원자재 시황] 미 고용지표 호조에 금값 하락 &nbsp;&nbsp;",
-   "source": "ebn.co.kr · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBwNzVxWUhMb1dISFlWenRsb2c1MzEtSUp5RzIxRkpQcElJRUp2TWVjWDlzVzhLUEttYUE1bXBnMGVtR3cwZ2Y2RkdOSlJXVU5XSXNRd0dOTFBxNmJ0RjZXUkRjbURuZWV2?oc=5"
+   "title": "[금/유가] 美·이란 선박 공격에 유가 6주래 최고…사우디 아람코 시설도 피격",
+   "body": "[금/유가] 美·이란 선박 공격에 유가 6주래 최고…사우디 아람코 시설도 피격 &nbsp;&nbsp;",
+   "source": "뉴스핌 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiXEFVX3lxTFBmYm94VGpDYU1VT3RZWWQzcEQwanBmeF9YcGVFS2FWVkhuUzBFOEt4eHItVTdodmh4QUNReUhoNE1tcDVVVEJxd1h3WkdrZ0N1bmYxUmotSXVYeklj?oc=5"
   },
   {
    "kicker": "OIL",
-   "title": "전 세계 덮친 ‘이란 공습’ 후폭풍…유가·금값 들썩",
-   "body": "전 세계 덮친 ‘이란 공습’ 후폭풍…유가·금값 들썩 &nbsp;&nbsp;",
-   "source": "쿠키뉴스 · 09.06",
-   "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1Udjd2QkdIX1lMa2VOZkcwd1A0LV9RZnpXRm5DS2JnZkVLeUlZX19CbVU1bmk2ekl4S1dBdlpZMExHQ2dfTUk3RUJNUmRiSEJWVmpPMnlxcWxKYkxrUUhZa3dScw?oc=5"
+   "title": "국제유가, 중동리스크 고조 등 영향 6주만에 최고치-브렌트유 97달러대⋯국제금값, 미국 금리인상 전망에 2거래일째 하락",
+   "body": "국제유가, 중동리스크 고조 등 영향 6주만에 최고치-브렌트유 97달러대⋯국제금값, 미국 금리인상 전망에 2거래일째 하락 &nbsp;&nbsp;",
+   "source": "이코노뉴스 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5Cd1lqVXBjMWNhaE13c2tHc0ROc3dReURvVzhveXpQNTFGTUs0N1h1RHhuN2s5Y2UyUWRPUWlodFk1U3FfdGJFaU9lbVlMcE8zRGRpNjdzYnpmNFZIeUltOHNkVmdlSjFTeERlZ2p3?oc=5"
   },
   {
    "kicker": "FED",
-   "title": "\"美 8월 고용, 연준 금리인상 기대 높여…물가지표 주시\"",
-   "body": "\"美 8월 고용, 연준 금리인상 기대 높여…물가지표 주시\" &nbsp;&nbsp;",
-   "source": "연합인포맥스 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTFBIcEFtZGtkaE15WDFPUkhMWFV2NHhsV19wdk5DNm1QdlV4Sk5idnZkbExVZmhpWW16djFGUHg0dS1zai1GaFltNXlsaFBPRW90YmNfLTZZS1ExaWpxRTRkZFdOX1dUNlRoRTlwWDF2WmE?oc=5"
+   "title": "9월 연준 금리 인상 확률 60% 진입…대차대조표 축소론 부상",
+   "body": "9월 연준 금리 인상 확률 60% 진입…대차대조표 축소론 부상 &nbsp;&nbsp;",
+   "source": "글로벌이코노믹 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNcXpNNjJ6Vk9vOEtTMWxVamVRUVVJSGFsTWZQN1JXS2FvREFEVS1BSE1fNmlYbGF4NjVQY0ZTSHdxMnc0U010bkoteEcyNVNJdW9XdzAtY2ZBMUxuOE41MTdJU2pMbEU4UHN3WllfVE41NmVZSUtQTm13cHRfWHhpaGs1Y1U4Q0R6?oc=5"
   },
   {
    "kicker": "FED",
-   "title": "비트코인, 연준 금리 인상 전망·유가 급등에 8만 달러 아래로 하락",
-   "body": "비트코인, 연준 금리 인상 전망·유가 급등에 8만 달러 아래로 하락 &nbsp;&nbsp;",
-   "source": "Investing.com 한국어 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE8xb043TVQ4NWFHeTFpWHpUVVR0WlktcHMzOEtwZmFRU25ObnNuYUJ5ekFySnBkVlhaQkJvLXlNVnRUNlY0UnE5ZGtmejJlUlVadURFNEhqaFBkWGM2MHZ4TWgxV05MMFAyYlpITFBsOEpSRWM?oc=5"
+   "title": "UBS, 연준 금리 전망 '동결→2회 인상' 수정…9·12월 0.25%p씩",
+   "body": "UBS, 연준 금리 전망 '동결→2회 인상' 수정…9·12월 0.25%p씩 &nbsp;&nbsp;",
+   "source": "v.daum.net · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE9TQ2JzVmhBb1ktdldsR1N5NlBZUFltV28wUlliYklLNG8tLU5DNkFHRTdiWmNUU0dFYzNJdk5JWU1oRXd4R19ydENGa2tvdm8?oc=5"
   }
  ],
  "filings": [
@@ -1924,14 +1920,6 @@
    "title": "주식등의대량보유상황보고서(일반)",
    "filer": "남이현",
    "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000706"
-  },
-  {
-   "name": "아이티센글로벌",
-   "code": "124500",
-   "date": "2026-08-24",
-   "title": "기업설명회(IR)개최",
-   "filer": "아이티센글로벌",
-   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260824900251"
   }
  ],
  "dartOn": true,
