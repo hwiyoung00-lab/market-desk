@@ -1,333 +1,10 @@
 {
  "site": {
   "title": "휘영 마켓 데스크",
-  "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정"
+  "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정을 한 화면에"
  },
- "updatedAt": "2026-09-04T16:40:00+09:00",
- "homeIndices": [
-  "^KS11",
-  "^KQ11",
-  "^GSPC",
-  "^IXIC",
-  "^DJI",
-  "^N225"
- ],
- "indices": [
-  {
-   "name": "코스피",
-   "symbol": "^KS11",
-   "dp": 2,
-   "group": "아시아",
-   "value": 6687.21,
-   "change": 107.73,
-   "pct": 1.64,
-   "asof": "09.04",
-   "spark": []
-  },
-  {
-   "name": "코스닥",
-   "symbol": "^KQ11",
-   "dp": 2,
-   "group": "아시아",
-   "value": 813.5,
-   "change": 23.29,
-   "pct": 2.95,
-   "asof": "09.04",
-   "spark": []
-  },
-  {
-   "name": "닛케이 225",
-   "symbol": "^N225",
-   "dp": 0,
-   "group": "아시아",
-   "value": 64276,
-   "change": -66.7,
-   "pct": -0.1,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "S&P 500",
-   "symbol": "^GSPC",
-   "dp": 2,
-   "group": "미국",
-   "value": 7666.6,
-   "change": 38.14,
-   "pct": 0.5,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "나스닥 종합",
-   "symbol": "^IXIC",
-   "dp": 2,
-   "group": "미국",
-   "value": 26217.83,
-   "change": 118.05,
-   "pct": 0.45,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "다우존스",
-   "symbol": "^DJI",
-   "dp": 2,
-   "group": "미국",
-   "value": 53061.95,
-   "change": 295.07,
-   "pct": 0.56,
-   "asof": "09.03",
-   "spark": []
-  }
- ],
- "macro": [
-  {
-   "name": "원/달러",
-   "symbol": "KRW=X",
-   "unit": "",
-   "dp": 2,
-   "prefix": "",
-   "suffix": "원",
-   "value": 1350.4,
-   "pct": -0.65,
-   "asof": "09.04",
-   "spark": []
-  },
-  {
-   "name": "금",
-   "symbol": "GC=F",
-   "unit": "선물",
-   "dp": 2,
-   "prefix": "$",
-   "suffix": "/oz",
-   "value": 4494.7,
-   "pct": 1.81,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "은",
-   "symbol": "SI=F",
-   "unit": "선물",
-   "dp": 2,
-   "prefix": "$",
-   "suffix": "/oz",
-   "value": 66.39,
-   "pct": 1.42,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "WTI",
-   "symbol": "CL=F",
-   "unit": "선물",
-   "dp": 2,
-   "prefix": "$",
-   "suffix": "/bbl",
-   "value": 92.94,
-   "pct": 2.12,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "브렌트",
-   "symbol": "BZ=F",
-   "unit": "선물",
-   "dp": 2,
-   "prefix": "$",
-   "suffix": "/bbl",
-   "value": 97.45,
-   "pct": 1.9,
-   "asof": "09.03",
-   "spark": []
-  }
- ],
- "rates": [
-  {
-   "name": "10년",
-   "symbol": "^TNX",
-   "years": 10,
-   "dp": 3,
-   "value": 4.818,
-   "change": null,
-   "pct": null,
-   "asof": "09.03",
-   "spark": []
-  }
- ],
- "spreads": [],
- "sectors": [],
- "crypto": [],
- "sentiment": {
-  "vix": 16.34,
-  "asof": "09.01",
-  "avg10y": 19.72,
-  "spark": [],
-  "note": "VIX 10년 중앙값은 약 19.7입니다. 이보다 낮으면 시장이 편안하다는 뜻이지만, 유가와 장기금리가 동시에 오르는 국면에서는 낮은 VIX가 오히려 방심 신호일 수 있습니다.",
-  "fng": null
- },
- "watchlist": [
-  {
-   "name": "아이티센글로벌",
-   "symbol": "124500.KQ",
-   "code": "124500",
-   "market": "KOSDAQ",
-   "tag": "RWA·금",
-   "currency": "KRW",
-   "value": 35950,
-   "change": 3250,
-   "pct": 9.94,
-   "asof": "09.04",
-   "spark": []
-  },
-  {
-   "name": "삼성전자",
-   "symbol": "005930.KS",
-   "code": "005930",
-   "market": "KOSPI",
-   "tag": "반도체",
-   "currency": "KRW",
-   "value": 250000,
-   "change": -500,
-   "pct": -0.2,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "SK하이닉스",
-   "symbol": "000660.KS",
-   "code": "000660",
-   "market": "KOSPI",
-   "tag": "HBM",
-   "currency": "KRW",
-   "value": 1596000,
-   "change": -17000,
-   "pct": -1.05,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "POSCO홀딩스",
-   "symbol": "005490.KS",
-   "code": "005490",
-   "market": "KOSPI",
-   "tag": "철강",
-   "currency": "KRW",
-   "value": 342000,
-   "change": 12000,
-   "pct": 3.64,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "디앤디파마텍",
-   "symbol": "347850.KQ",
-   "code": "347850",
-   "market": "KOSDAQ",
-   "tag": "바이오",
-   "currency": "KRW",
-   "value": 51800,
-   "change": -1700,
-   "pct": -3.18,
-   "asof": "09.01",
-   "spark": []
-  },
-  {
-   "name": "에치에프알",
-   "symbol": "230240.KQ",
-   "code": "230240",
-   "market": "KOSDAQ",
-   "tag": "통신장비",
-   "currency": "KRW",
-   "value": 12380,
-   "change": -510,
-   "pct": -3.96,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "파두",
-   "symbol": "440110.KQ",
-   "code": "440110",
-   "market": "KOSDAQ",
-   "tag": "반도체",
-   "currency": "KRW",
-   "value": 62800,
-   "change": -300,
-   "pct": -0.48,
-   "asof": "09.02",
-   "spark": []
-  },
-  {
-   "name": "Astera Labs",
-   "symbol": "ALAB",
-   "code": "ALAB",
-   "market": "NASDAQ",
-   "tag": "AI 인프라",
-   "currency": "USD",
-   "value": 282.82,
-   "change": 8.69,
-   "pct": 3.17,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "Lattice Semiconductor",
-   "symbol": "LSCC",
-   "code": "LSCC",
-   "market": "NASDAQ",
-   "tag": "반도체",
-   "currency": "USD",
-   "value": 112.82,
-   "change": -1.06,
-   "pct": -0.93,
-   "asof": "09.03",
-   "spark": []
-  },
-  {
-   "name": "Bloom Energy",
-   "symbol": "BE",
-   "code": "BE",
-   "market": "NYSE",
-   "tag": "전력",
-   "currency": "USD",
-   "value": 235.55,
-   "change": 18.27,
-   "pct": 8.41,
-   "asof": "09.03",
-   "spark": []
-  }
- ],
- "news": [
-  {
-   "kicker": "KR",
-   "title": "코스닥 2.95% 급등한 813.50, 코스피는 6,687.21로 마감",
-   "body": "코스피 +107.73p(+1.64%), 코스닥 +23.29p(+2.95%). 전일 수급 공백으로 6,579선까지 밀렸던 흐름을 하루 만에 되돌렸습니다.",
-   "source": "머니투데이 · 09.04",
-   "url": "https://www.mt.co.kr/stock/2026/09/04/2026090415282496905"
-  },
-  {
-   "kicker": "FX",
-   "title": "원/달러 8.9원 내린 1,350.4원",
-   "body": "서울외환시장 오후 3시 30분 주간거래 종가 기준. 원화 강세가 외국인 수급에 우호적으로 작용했습니다.",
-   "source": "머니투데이 · 09.04",
-   "url": "https://www.mt.co.kr/economy/2026/09/04/2026090415342187051"
-  },
-  {
-   "kicker": "US",
-   "title": "미 10년물 4.818% 도달, 유가·금리 동반 상승 속 지수는 반등",
-   "body": "다우 +295.07p(+0.6%), 나스닥 +118.05p(+0.5%). Dell +15.8%, GitLab +10% 등 실적 서프라이즈가 지수를 끌어올렸지만, 에너지(+1.3%)를 뺀 IT·소재·산업재는 약세였습니다.",
-   "source": "Yahoo Finance · 09.03",
-   "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-news-sep-3-095800036.html"
-  },
-  {
-   "kicker": "OIL",
-   "title": "미-이란 갈등 심화에 WTI $92.94, 브렌트 $97.45",
-   "body": "호르무즈 해협 리스크가 다시 유가에 반영되는 국면. 금도 $4,494.70(+1.81%)로 동반 강세입니다.",
-   "source": "TheStreet · 09.03",
-   "url": "https://www.thestreet.com/stock-market-today/stock-market-today-dow-jones-sp-500-nasdaq-updates-sept-03-2026"
-  }
- ],
+ "updatedAt": "2026-09-07T09:33:15+09:00",
+ "homeIndices": [],
  "calendar": [
   {
    "date": "2026-09-10",
@@ -366,9 +43,392 @@
    "high": true
   }
  ],
+ "indices": [
+  {
+   "name": "코스피",
+   "symbol": "^KS11",
+   "dp": 2,
+   "group": "아시아",
+   "value": 6687.21,
+   "change": 107.73,
+   "pct": 1.64,
+   "asof": "09.04",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "코스닥",
+   "symbol": "^KQ11",
+   "dp": 2,
+   "group": "아시아",
+   "value": 813.5,
+   "change": 23.29,
+   "pct": 2.95,
+   "asof": "09.04",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "S&P 500",
+   "symbol": "^GSPC",
+   "dp": 2,
+   "group": "미국",
+   "value": 7666.6,
+   "change": 38.14,
+   "pct": 0.5,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "나스닥 종합",
+   "symbol": "^IXIC",
+   "dp": 2,
+   "group": "미국",
+   "value": 26217.83,
+   "change": 118.05,
+   "pct": 0.45,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "다우존스",
+   "symbol": "^DJI",
+   "dp": 2,
+   "group": "미국",
+   "value": 53061.95,
+   "change": 295.07,
+   "pct": 0.56,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "닛케이 225",
+   "symbol": "^N225",
+   "dp": 0,
+   "group": "아시아",
+   "value": 64276,
+   "change": -66.7,
+   "pct": -0.1,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  }
+ ],
+ "macro": [
+  {
+   "name": "원/달러",
+   "symbol": "KRW=X",
+   "unit": "",
+   "dp": 2,
+   "prefix": "",
+   "suffix": "원",
+   "value": 1350.4,
+   "pct": -0.65,
+   "asof": "09.04",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "금",
+   "symbol": "GC=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/oz",
+   "value": 4494.7,
+   "pct": 1.81,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "은",
+   "symbol": "SI=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/oz",
+   "value": 66.39,
+   "pct": 1.42,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "WTI",
+   "symbol": "CL=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/bbl",
+   "value": 92.94,
+   "pct": 2.12,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "브렌트",
+   "symbol": "BZ=F",
+   "unit": "선물",
+   "dp": 2,
+   "prefix": "$",
+   "suffix": "/bbl",
+   "value": 97.45,
+   "pct": 1.9,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  }
+ ],
+ "rates": [],
+ "spreads": [],
+ "sectors": [],
+ "crypto": [],
+ "sentiment": {
+  "avg10y": 19.72,
+  "note": "VIX 10년 중앙값은 약 19.7입니다. 이보다 낮으면 시장이 편안하다는 뜻이지만, 유가와 장기금리가 동시에 오르는 국면에서는 낮은 VIX가 오히려 방심 신호일 수 있습니다.",
+  "vix": 16.34,
+  "asof": "09.01",
+  "spark": [],
+  "stale": true,
+  "fng": {
+   "value": 41.9,
+   "label": "fear",
+   "asof": "",
+   "prevClose": 35.2,
+   "prevWeek": 52.3,
+   "prevMonth": 60.0
+  }
+ },
+ "watchlist": [
+  {
+   "name": "아이티센글로벌",
+   "symbol": "124500.KQ",
+   "code": "124500",
+   "market": "KOSDAQ",
+   "tag": "RWA·금",
+   "currency": "KRW",
+   "value": 35950,
+   "change": 3250,
+   "pct": 9.94,
+   "asof": "09.04",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "삼성전자",
+   "symbol": "005930.KS",
+   "code": "005930",
+   "market": "KOSPI",
+   "tag": "반도체",
+   "currency": "KRW",
+   "value": 250000,
+   "change": -500,
+   "pct": -0.2,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "SK하이닉스",
+   "symbol": "000660.KS",
+   "code": "000660",
+   "market": "KOSPI",
+   "tag": "HBM",
+   "currency": "KRW",
+   "value": 1596000,
+   "change": -17000,
+   "pct": -1.05,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "POSCO홀딩스",
+   "symbol": "005490.KS",
+   "code": "005490",
+   "market": "KOSPI",
+   "tag": "철강",
+   "currency": "KRW",
+   "value": 342000,
+   "change": 12000,
+   "pct": 3.64,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "디앤디파마텍",
+   "symbol": "347850.KQ",
+   "code": "347850",
+   "market": "KOSDAQ",
+   "tag": "바이오",
+   "currency": "KRW",
+   "value": 51800,
+   "change": -1700,
+   "pct": -3.18,
+   "asof": "09.01",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "에치에프알",
+   "symbol": "230240.KQ",
+   "code": "230240",
+   "market": "KOSDAQ",
+   "tag": "통신장비",
+   "currency": "KRW",
+   "value": 12380,
+   "change": -510,
+   "pct": -3.96,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "파두",
+   "symbol": "440110.KQ",
+   "code": "440110",
+   "market": "KOSDAQ",
+   "tag": "반도체",
+   "currency": "KRW",
+   "value": 62800,
+   "change": -300,
+   "pct": -0.48,
+   "asof": "09.02",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "Astera Labs",
+   "symbol": "ALAB",
+   "code": "ALAB",
+   "market": "NASDAQ",
+   "tag": "AI 인프라",
+   "currency": "USD",
+   "value": 282.82,
+   "change": 8.69,
+   "pct": 3.17,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "Lattice Semiconductor",
+   "symbol": "LSCC",
+   "code": "LSCC",
+   "market": "NASDAQ",
+   "tag": "반도체",
+   "currency": "USD",
+   "value": 112.82,
+   "change": -1.06,
+   "pct": -0.93,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  },
+  {
+   "name": "Bloom Energy",
+   "symbol": "BE",
+   "code": "BE",
+   "market": "NYSE",
+   "tag": "전력",
+   "currency": "USD",
+   "value": 235.55,
+   "change": 18.27,
+   "pct": 8.41,
+   "asof": "09.03",
+   "spark": [],
+   "stale": true
+  }
+ ],
+ "news": [
+  {
+   "kicker": "KR",
+   "title": "[마켓뷰] 오픈AI발 호재에 美반도체 급등…코스피도 강세 기대",
+   "body": "[마켓뷰] 오픈AI발 호재에 美반도체 급등…코스피도 강세 기대 &nbsp;&nbsp;",
+   "source": "연합뉴스 · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE0yM0pjU3JkUzlNYk1VdTVvTHhJNEtDZ3Q4cGJ1ZjNVNjNSX2kyWHE3LXNLVzFUcUxNRWJyVlhjYWtzTndKaGJtTmQ0bENfN2FHRFpRNU1uR1dpYkHSAWBBVV95cUxPc2hSdzd5Z2hkczU0OFJYM3ZLNnVmN0ZieTVIVFlGVjhzeGFwTE9nUDdCNm1zazFTUW0yNV95VHMwSjZpb2swS2tYd253M05JaUNZUE8zVmota294SDJZUUE?oc=5"
+  },
+  {
+   "kicker": "KR",
+   "title": "박스권 갇힌 코스피…미 물가·네마녀의 날·국채금리 주목",
+   "body": "박스권 갇힌 코스피…미 물가·네마녀의 날·국채금리 주목 &nbsp;&nbsp;",
+   "source": "매일경제 마켓 · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBEX2ZpQ2hheUxmdFkzcTlLMEYyVTZRYXdiZlZkTEdET3lFWXlrbEJ6SlR2bHhXSzJZWnphcFlsMTVFUlFqWEFCUGYwd1BWNFU3Tmc?oc=5"
+  },
+  {
+   "kicker": "FX",
+   "title": "[속보]원·달러 환율 장중 1330원대로 하락",
+   "body": "[속보]원·달러 환율 장중 1330원대로 하락 &nbsp;&nbsp;",
+   "source": "아시아경제 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wVVI1NGJ1R0dXbVlBdEMyYlJFRkZxeUpNa19aaHBGclZMS2dtYnA5U3ZOTktYWmtIZ0NhZFZmV053dXJ3c3d3d2EzNmtaVWNEbFpac3dkZVZUZEpUc1AxRw?oc=5"
+  },
+  {
+   "kicker": "FX",
+   "title": "23개월 만에 최저 환율...안정세 이어가나?",
+   "body": "23개월 만에 최저 환율...안정세 이어가나? &nbsp;&nbsp;",
+   "source": "YTN · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5zRVAtUmFHZ2tnNTFYNENRSFJKSVlyVzlCNExsRU90ak5uZXJfYjFlaGNfUkREMlh1NmE0T3hnRUEwU3ZGM0lKbTVFMkV3NDdBRVdMMFNDQzZHSm5vdkE?oc=5"
+  },
+  {
+   "kicker": "US",
+   "title": "09/07 [뉴욕증시 마감브리핑]",
+   "body": "09/07 [뉴욕증시 마감브리핑] &nbsp;&nbsp;",
+   "source": "네이버 프리미엄콘텐츠 · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSk1YRm9hRFpTZFdtcEczTUotbkZPbi1UeEpwaDMzd243MU0yNFZlQXVSckNiMHZrbG0zTUdCQkNKWTFqRGg1TWFoYVY1ak8zbEtGUi1ueFRyeG9yZTc5Y0tkZXh4ajZCSFctUngyb3d3dFR0SzVoMGJJYlZHN3pPa2lxTXAyVEpLUUNB?oc=5"
+  },
+  {
+   "kicker": "US",
+   "title": "[뉴욕증시 2일] 기술주 강세에 상승 마감",
+   "body": "[뉴욕증시 2일] 기술주 강세에 상승 마감 &nbsp;&nbsp;",
+   "source": "미주조선일보 · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOcmp6VE9kZXpTZ3p1RDVFOExsbEpwTWxwSDllNGNyTDg1WXA0d0psUlZrSE9ydXVpVHZMWUM5aF8tVnhDUnFhY1IwUTlhZnpWNndtM1JWellvSHRiWl9WbHR4NUtmaUZLV2Voc0R2TVhSMFdUemhlekNmSzdVbEdGX3ZUX2R3VVhhUVNXUDZGM19NUGZZWHk1THN4bDVua2x3QmxOY2dDZXJQVWtaTEl1ZDlFYjRNdFRISDgwUUlqTlAyTTlNQm5YV2lB?oc=5"
+  },
+  {
+   "kicker": "OIL",
+   "title": "전 세계 덮친 ‘이란 공습’ 후폭풍…유가·금값 들썩",
+   "body": "전 세계 덮친 ‘이란 공습’ 후폭풍…유가·금값 들썩 &nbsp;&nbsp;",
+   "source": "쿠키뉴스 · 09.06",
+   "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE1Udjd2QkdIX1lMa2VOZkcwd1A0LV9RZnpXRm5DS2JnZkVLeUlZX19CbVU1bmk2ekl4S1dBdlpZMExHQ2dfTUk3RUJNUmRiSEJWVmpPMnlxcWxKYkxrUUhZa3dScw?oc=5"
+  },
+  {
+   "kicker": "OIL",
+   "title": "[원자재 시황] 미 고용지표 호조에 금값 하락",
+   "body": "[원자재 시황] 미 고용지표 호조에 금값 하락 &nbsp;&nbsp;",
+   "source": "네이트 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBtX1JsNlVHdGNMNy1KYmt3VEhvRXdyeVRQUnBXRHdIcUN6Q1RNY2VkVlMwTmRPNDFsNERlYjEyVFpVREE3RGdqRTUwVXdSQUtGclFv?oc=5"
+  }
+ ],
  "filings": [],
  "dartOn": false,
  "warnings": [
-  "첫 화면용 초기 데이터입니다. Actions 탭에서 '시세 갱신'을 한 번 실행하면 섹터·금리곡선·가상자산·차트가 모두 채워집니다."
+  "^KS11: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "^KQ11: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "^GSPC: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^IXIC: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^DJI: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^N225: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "KRW=X: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^TNX: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "GC=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "SI=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "CL=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "BZ=F: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "^VIX: 야후·stooq 모두 실패 (HTTP Error 429: Too Many Requests / HTTP Error 404: Not Found)",
+  "124500.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "005930.KS: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "000660.KS: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "005490.KS: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "347850.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "230240.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "440110.KQ: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "ALAB: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "LSCC: 시세 수집 실패 (HTTP Error 429: Too Many Requests)",
+  "BE: 시세 수집 실패 (HTTP Error 429: Too Many Requests)"
  ]
 }
