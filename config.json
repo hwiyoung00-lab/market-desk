@@ -1,4 +1,159 @@
 {
+  "_읽어보세요": "이 파일만 고치면 대시보드 내용이 바뀝니다. symbol 은 야후 파이낸스 티커입니다. 코스피=.KS, 코스닥=.KQ 를 붙입니다(삼성전자 005930.KS). 고쳐서 저장하면 다음 갱신부터 반영됩니다.",
+
+  "site": {
+    "title": "휘영 마켓 데스크",
+    "tagline": "지금 어느 쪽이 유리한가 — 매크로 레짐 판단용"
+  },
+
+  "indices": [
+    { "name": "코스피",       "symbol": "^KS11",     "dp": 2, "group": "아시아" },
+    { "name": "코스닥",       "symbol": "^KQ11",     "dp": 2, "group": "아시아" },
+    { "name": "닛케이 225",   "symbol": "^N225",     "dp": 0, "group": "아시아" },
+    { "name": "항셍",         "symbol": "^HSI",      "dp": 0, "group": "아시아" },
+    { "name": "S&P 500",     "symbol": "^GSPC",     "dp": 2, "group": "미국" },
+    { "name": "나스닥 종합",  "symbol": "^IXIC",     "dp": 2, "group": "미국" },
+    { "name": "다우존스",     "symbol": "^DJI",      "dp": 2, "group": "미국" },
+    { "name": "러셀 2000",    "symbol": "^RUT",      "dp": 2, "group": "미국" },
+    { "name": "유로스톡스 50","symbol": "^STOXX50E", "dp": 2, "group": "유럽" }
+  ],
+  "_홈화면_지수": "홈 상단 띠에 띄울 6개.",
+  "home_indices": ["^KS11", "^KQ11", "^GSPC", "^IXIC", "^RUT", "^N225"],
+
+  "macro": [
+    { "name": "원/달러",  "symbol": "KRW=X",   "unit": "",     "dp": 2, "suffix": "원" },
+    { "name": "엔/달러",  "symbol": "JPY=X",   "unit": "",     "dp": 2, "suffix": "엔" },
+    { "name": "달러인덱스","symbol": "DX-Y.NYB","unit": "DXY",  "dp": 2 },
+    { "name": "금",       "symbol": "GC=F",    "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/oz" },
+    { "name": "은",       "symbol": "SI=F",    "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/oz" },
+    { "name": "구리",     "symbol": "HG=F",    "unit": "선물", "dp": 3, "prefix": "$", "suffix": "/lb" },
+    { "name": "WTI",      "symbol": "CL=F",    "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/bbl" },
+    { "name": "브렌트",   "symbol": "BZ=F",    "unit": "선물", "dp": 2, "prefix": "$", "suffix": "/bbl" },
+    { "name": "천연가스", "symbol": "NG=F",    "unit": "선물", "dp": 3, "prefix": "$", "suffix": "/MMBtu" }
+  ],
+
+  "_금리": "만기 짧은 것부터. years 는 커브 그래프의 가로축 위치입니다.",
+  "rates": [
+    { "name": "3개월", "symbol": "^IRX", "years": 0.25 },
+    { "name": "5년",   "symbol": "^FVX", "years": 5 },
+    { "name": "10년",  "symbol": "^TNX", "years": 10 },
+    { "name": "30년",  "symbol": "^TYX", "years": 30 }
+  ],
+  "spreads": [
+    { "name": "10년 − 3개월", "long": "^TNX", "short": "^IRX",
+      "note": "마이너스(역전)면 경기침체 선행 신호로 읽혀온 지표입니다. 다만 역전 후 실제 침체까지 통상 1~2년이 걸리고, 빗나간 적도 있습니다." },
+    { "name": "30년 − 5년",   "long": "^TYX", "short": "^FVX",
+      "note": "커브 장기 구간의 기울기. 가팔라지면 인플레·재정 리스크 프리미엄이 붙는다는 뜻으로 읽힙니다." }
+  ],
+
+  "_섹터": "미국 섹터 ETF. 기간별 수익률을 계산해 로테이션 표로 보여줍니다.",
+  "sectors": [
+    { "name": "반도체",      "symbol": "SOXX", "cyc": "경기민감" },
+    { "name": "기술",        "symbol": "XLK",  "cyc": "경기민감" },
+    { "name": "커뮤니케이션","symbol": "XLC",  "cyc": "경기민감" },
+    { "name": "임의소비재",  "symbol": "XLY",  "cyc": "경기민감" },
+    { "name": "금융",        "symbol": "XLF",  "cyc": "경기민감" },
+    { "name": "산업재",      "symbol": "XLI",  "cyc": "경기민감" },
+    { "name": "소재",        "symbol": "XLB",  "cyc": "경기민감" },
+    { "name": "에너지",      "symbol": "XLE",  "cyc": "인플레 수혜" },
+    { "name": "필수소비재",  "symbol": "XLP",  "cyc": "방어" },
+    { "name": "헬스케어",    "symbol": "XLV",  "cyc": "방어" },
+    { "name": "유틸리티",    "symbol": "XLU",  "cyc": "방어" },
+    { "name": "리츠",        "symbol": "XLRE", "cyc": "금리민감" }
+  ],
+
+  "_크로스에셋": "자산군 전체를 같은 잣대(기간 수익률)로 줄세웁니다. 어디로 돈이 가고 있는지 보는 화면입니다.",
+  "cross_assets": [
+    { "name": "미국 대형주",   "symbol": "SPY",  "group": "주식" },
+    { "name": "나스닥 100",    "symbol": "QQQ",  "group": "주식" },
+    { "name": "미국 소형주",   "symbol": "IWM",  "group": "주식" },
+    { "name": "선진국(미국외)","symbol": "EFA",  "group": "주식" },
+    { "name": "신흥국",        "symbol": "EEM",  "group": "주식" },
+    { "name": "한국",          "symbol": "EWY",  "group": "주식" },
+    { "name": "미 장기국채",   "symbol": "TLT",  "group": "채권" },
+    { "name": "미 중기국채",   "symbol": "IEF",  "group": "채권" },
+    { "name": "물가연동채",    "symbol": "TIP",  "group": "채권" },
+    { "name": "투자등급 회사채","symbol": "LQD", "group": "채권" },
+    { "name": "하이일드",      "symbol": "HYG",  "group": "채권" },
+    { "name": "금",            "symbol": "GLD",  "group": "실물·통화" },
+    { "name": "원자재 바스켓", "symbol": "DBC",  "group": "실물·통화" },
+    { "name": "구리",          "symbol": "CPER", "group": "실물·통화" },
+    { "name": "미국 리츠",     "symbol": "VNQ",  "group": "실물·통화" },
+    { "name": "달러",          "symbol": "UUP",  "group": "실물·통화" }
+  ],
+
+  "_비율": "이게 이 사이트의 핵심입니다. 두 자산의 비율선이 오르면 앞쪽이 이기는 중이라는 뜻이고, 그게 곧 시장이 무엇에 베팅하는지를 말해줍니다. axis 는 이 비율이 성장(growth)을 읽는 것인지 물가(inflation)를 읽는 것인지입니다.",
+  "ratios": [
+    { "name": "구리 / 금", "num": "CPER", "den": "GLD", "axis": "growth",
+      "up": "성장 기대", "down": "안전 선호",
+      "note": "구리는 실물경기에, 금은 불안에 반응합니다. 이 선이 오르면 시장이 경기 확장에 베팅하는 중이고, 내리면 방어로 도는 중입니다. 채권금리보다 먼저 움직이는 경우가 많아 오래 쓰여온 지표입니다." },
+    { "name": "경기소비재 / 필수소비재", "num": "XLY", "den": "XLP", "axis": "growth",
+      "up": "소비 여력 확대", "down": "소비 위축",
+      "note": "사람들이 자동차·여행에 쓰느냐, 생필품만 사느냐의 차이입니다. 경기 체감을 가장 직접적으로 보여주는 섹터 쌍입니다." },
+    { "name": "소형주 / 대형주", "num": "IWM", "den": "SPY", "axis": "growth",
+      "up": "위험선호 확대", "down": "대형주 쏠림",
+      "note": "소형주는 내수·경기·자금조달에 민감합니다. 이 선이 내리는데 지수가 오른다면, 몇몇 대형주가 지수를 떠받치는 좁은 장세라는 뜻입니다." },
+    { "name": "하이일드 / 국채", "num": "HYG", "den": "IEF", "axis": "growth",
+      "up": "신용 여건 양호", "down": "신용 경계",
+      "note": "신용시장은 주식보다 먼저 겁을 냅니다. 주가는 버티는데 이 선만 무너지면 경고로 읽는 게 관행입니다." },
+    { "name": "물가채 / 명목채", "num": "TIP", "den": "IEF", "axis": "inflation",
+      "up": "기대 인플레 상승", "down": "기대 인플레 하락",
+      "note": "물가연동채가 일반 국채를 이긴다는 건 시장이 앞으로 물가가 더 오를 것으로 본다는 뜻입니다. 손익분기 인플레이션의 대용 지표입니다." },
+    { "name": "원자재 / 주식", "num": "DBC", "den": "SPY", "axis": "inflation",
+      "up": "실물 인플레 압력", "down": "인플레 완화",
+      "note": "원자재가 주식을 이기는 국면은 비용 인플레가 살아있다는 신호입니다. 에너지·소재가 유리해지는 구간이기도 합니다." },
+    { "name": "주식 / 장기채", "num": "SPY", "den": "TLT", "axis": "-",
+      "up": "위험자산 우위", "down": "안전자산 우위",
+      "note": "가장 큰 그림의 자산배분 저울입니다. 방향이 바뀌면 포트폴리오 전체 비중을 다시 볼 시점입니다." },
+    { "name": "금 / 주식", "num": "GLD", "den": "SPY", "axis": "-",
+      "up": "실물·헤지 선호", "down": "위험자산 선호",
+      "note": "금이 주식을 이기는 구간은 통화가치·재정 신뢰에 의문이 붙거나 실질금리가 내리는 국면인 경우가 많습니다." }
+  ],
+
+  "_레짐": "위 비율들의 최근 3개월 움직임이 지난 1년 분포에서 어디쯤인지(백분위)로 성장축·물가축 점수를 냅니다. 예측이 아니라 '시장 가격이 지금 무엇을 반영하고 있는가'의 요약입니다.",
+  "regime": {
+    "lookback_days": 63,
+    "growth": ["구리 / 금", "경기소비재 / 필수소비재", "소형주 / 대형주", "하이일드 / 국채"],
+    "inflation": ["물가채 / 명목채", "원자재 / 주식"]
+  },
+
+  "crypto": [
+    { "name": "비트코인", "symbol": "BTC-USD", "dp": 0 },
+    { "name": "이더리움", "symbol": "ETH-USD", "dp": 2 }
+  ],
+
+  "sentiment": {
+    "symbol": "^VIX",
+    "avg10y": 19.72,
+    "note": "VIX 10년 중앙값은 약 19.7입니다. 이보다 낮으면 시장이 편안하다는 뜻이지만, 유가와 장기금리가 동시에 오르는 국면에서는 낮은 VIX가 오히려 방심 신호일 수 있습니다."
+  },
+
+  "watchlist": [
+    { "name": "아이티센글로벌",        "symbol": "124500.KQ", "market": "KOSDAQ", "tag": "RWA·금" },
+    { "name": "삼성전자",              "symbol": "005930.KS", "market": "KOSPI",  "tag": "반도체" },
+    { "name": "SK하이닉스",            "symbol": "000660.KS", "market": "KOSPI",  "tag": "HBM" },
+    { "name": "POSCO홀딩스",           "symbol": "005490.KS", "market": "KOSPI",  "tag": "철강" },
+    { "name": "디앤디파마텍",          "symbol": "347850.KQ", "market": "KOSDAQ", "tag": "바이오" },
+    { "name": "에치에프알",            "symbol": "230240.KQ", "market": "KOSDAQ", "tag": "통신장비" },
+    { "name": "파두",                  "symbol": "440110.KQ", "market": "KOSDAQ", "tag": "반도체" },
+    { "name": "Astera Labs",           "symbol": "ALAB",      "market": "NASDAQ", "tag": "AI 인프라" },
+    { "name": "Lattice Semiconductor", "symbol": "LSCC",      "market": "NASDAQ", "tag": "반도체" },
+    { "name": "Bloom Energy",          "symbol": "BE",        "market": "NYSE",   "tag": "전력" }
+  ],
+
+  "news_queries": [
+    { "kicker": "KR",  "q": "코스피 증시" },
+    { "kicker": "FX",  "q": "원달러 환율" },
+    { "kicker": "US",  "q": "뉴욕증시 마감" },
+    { "kicker": "OIL", "q": "국제유가 금값" },
+    { "kicker": "FED", "q": "연준 금리" }
+  ],
+  "news_per_query": 2,
+
+  "_DART": "한국 전자공시 연동. 키는 GitHub 저장소 Settings → Secrets and variables → Actions 에 DART_API_KEY 로 넣습니다. 절대 이 파일에 직접 적지 마세요.",
+  "dart": { "enabled": true, "days": 14 }
+}
+{
   "_읽어보세요": "이 파일만 고치면 대시보드 내용이 바뀝니다. symbol 은 야후 파이낸스 티커입니다. 코스피=.KS, 코스닥=.KQ 를 붙입니다(삼성전자 005930.KS, 아이티센글로벌 124500.KQ). 고쳐서 저장하면 다음 갱신부터 반영됩니다.",
 
   "site": {
