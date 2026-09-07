@@ -3,7 +3,7 @@
   "title": "휘영 마켓 데스크",
   "tagline": "지수 · 환율 · 관심종목 · 시장심리 · 일정"
  },
- "updatedAt": "2026-09-07T11:01:14+09:00",
+ "updatedAt": "2026-09-07T15:51:55+09:00",
  "homeIndices": [
   "^KS11",
   "^KQ11",
@@ -55,9 +55,9 @@
    "name": "코스피",
    "symbol": "^KS11",
    "dp": 2,
-   "value": 6888.1401,
-   "change": 200.9302,
-   "pct": 3.005,
+   "value": 6995.3999,
+   "change": 308.1899,
+   "pct": 4.609,
    "asof": "09.07",
    "spark": [
     6258.77,
@@ -80,7 +80,7 @@
     6562.7202,
     6579.48,
     6687.21,
-    6888.1401
+    6995.3999
    ],
    "group": "아시아"
   },
@@ -88,9 +88,9 @@
    "name": "코스닥",
    "symbol": "^KQ11",
    "dp": 2,
-   "value": 826.61,
-   "change": 13.11,
-   "pct": 1.612,
+   "value": 822.19,
+   "change": 8.69,
+   "pct": 1.068,
    "asof": "09.07",
    "spark": [
     798.81,
@@ -113,7 +113,7 @@
     803.98,
     790.21,
     813.5,
-    826.61
+    822.19
    ],
    "group": "아시아"
   },
@@ -121,9 +121,9 @@
    "name": "닛케이 225",
    "symbol": "^N225",
    "dp": 0,
-   "value": 66500.5625,
-   "change": 1479.6211,
-   "pct": 2.276,
+   "value": 66399.8438,
+   "change": 1378.9023,
+   "pct": 2.121,
    "asof": "09.07",
    "spark": [
     65606.7109,
@@ -146,7 +146,7 @@
     64325.6406,
     64214.4805,
     65020.9414,
-    66500.5625
+    66399.8438
    ],
    "group": "아시아"
   },
@@ -154,9 +154,9 @@
    "name": "항셍",
    "symbol": "^HSI",
    "dp": 0,
-   "value": 25517.3594,
-   "change": -133.5098,
-   "pct": -0.52,
+   "value": 25451.1504,
+   "change": -199.7188,
+   "pct": -0.779,
    "asof": "09.07",
    "spark": [
     25668.0293,
@@ -180,7 +180,7 @@
     25311.2109,
     25213.3105,
     25650.8691,
-    25517.3594
+    25451.1504
    ],
    "group": "아시아"
   },
@@ -188,9 +188,9 @@
    "name": "상하이종합",
    "symbol": "000001.SS",
    "dp": 2,
-   "value": 3935.0847,
-   "change": 4.9688,
-   "pct": 0.126,
+   "value": 3934.5137,
+   "change": 4.3977,
+   "pct": 0.112,
    "asof": "09.07",
    "spark": [
     3940.0371,
@@ -214,7 +214,7 @@
     3941.386,
     3942.0879,
     3930.116,
-    3935.0847
+    3934.5137
    ],
    "group": "아시아"
   },
@@ -394,9 +394,9 @@
    "name": "원/달러",
    "symbol": "KRW=X",
    "dp": 2,
-   "value": 1342.88,
-   "change": -12.53,
-   "pct": -0.924,
+   "value": 1341.4,
+   "change": -14.01,
+   "pct": -1.034,
    "asof": "09.07",
    "spark": [
     1422.3,
@@ -420,7 +420,7 @@
     1372.86,
     1358.39,
     1355.41,
-    1342.88
+    1341.4
    ],
    "unit": "",
    "prefix": null,
@@ -430,9 +430,9 @@
    "name": "엔/달러",
    "symbol": "JPY=X",
    "dp": 2,
-   "value": 156.025,
-   "change": 0.365,
-   "pct": 0.234,
+   "value": 155.779,
+   "change": 0.119,
+   "pct": 0.076,
    "asof": "09.07",
    "spark": [
     158.409,
@@ -456,7 +456,7 @@
     160.196,
     158.923,
     155.66,
-    156.025
+    155.779
    ],
    "unit": "",
    "prefix": null,
@@ -466,10 +466,10 @@
    "name": "달러인덱스",
    "symbol": "DX-Y.NYB",
    "dp": 2,
-   "value": 99.13,
-   "change": -0.03,
-   "pct": -0.03,
-   "asof": "09.06",
+   "value": 99.078,
+   "change": -0.082,
+   "pct": -0.083,
+   "asof": "09.07",
    "spark": [
     99.6,
     99.81,
@@ -492,7 +492,7 @@
     99.56,
     99.0,
     99.16,
-    99.13
+    99.078
    ],
    "unit": "DXY",
    "prefix": null,
@@ -505,7 +505,7 @@
    "value": 4476.6001,
    "change": 46.8003,
    "pct": 1.056,
-   "asof": "09.06",
+   "asof": "09.07",
    "spark": [
     4340.7002,
     4361.7998,
@@ -541,7 +541,7 @@
    "value": 66.748,
    "change": 0.701,
    "pct": 1.061,
-   "asof": "09.06",
+   "asof": "09.07",
    "spark": [
     63.332,
     65.106,
@@ -577,7 +577,7 @@
    "value": 6.6825,
    "change": 0.0855,
    "pct": 1.296,
-   "asof": "09.06",
+   "asof": "09.07",
    "spark": [
     6.5705,
     6.5945,
@@ -613,7 +613,7 @@
    "value": 91.48,
    "change": 0.0,
    "pct": 0.0,
-   "asof": "09.06",
+   "asof": "09.07",
    "spark": [
     78.18,
     82.13,
@@ -649,7 +649,7 @@
    "value": 96.28,
    "change": 0.0,
    "pct": 0.0,
-   "asof": "09.06",
+   "asof": "09.07",
    "spark": [
     83.55,
     87.72,
@@ -685,7 +685,7 @@
    "value": 2.975,
    "change": 0.0,
    "pct": 0.0,
-   "asof": "09.06",
+   "asof": "09.07",
    "spark": [
     2.662,
     2.794,
@@ -1270,9 +1270,9 @@
    "name": "비트코인",
    "symbol": "BTC-USD",
    "dp": 0,
-   "value": 79927.7891,
-   "change": 103.9219,
-   "pct": 0.13,
+   "value": 79658.0938,
+   "change": -165.7734,
+   "pct": -0.208,
    "asof": "09.07",
    "spark": [
     62818.6523,
@@ -1296,16 +1296,16 @@
     81271.7422,
     79671.9688,
     79823.8672,
-    79927.7891
+    79658.0938
    ]
   },
   {
    "name": "이더리움",
    "symbol": "ETH-USD",
    "dp": 2,
-   "value": 2504.3301,
-   "change": 23.5945,
-   "pct": 0.951,
+   "value": 2499.25,
+   "change": 18.5144,
+   "pct": 0.746,
    "asof": "09.07",
    "spark": [
     1873.943,
@@ -1329,7 +1329,7 @@
     2508.0208,
     2456.0781,
     2480.7356,
-    2504.3301
+    2499.25
    ]
   }
  ],
@@ -1379,9 +1379,9 @@
    "market": "KOSDAQ",
    "tag": "RWA·금",
    "currency": "KRW",
-   "value": 34950.0,
-   "change": -700.0,
-   "pct": -1.964,
+   "value": 34100.0,
+   "change": -1550.0,
+   "pct": -4.348,
    "asof": "09.07",
    "spark": [
     22700.0,
@@ -1404,7 +1404,7 @@
     33750.0,
     32700.0,
     35650.0,
-    34950.0
+    34100.0
    ]
   },
   {
@@ -1414,9 +1414,9 @@
    "market": "KOSPI",
    "tag": "반도체",
    "currency": "KRW",
-   "value": 265000.0,
-   "change": 9500.0,
-   "pct": 3.718,
+   "value": 270000.0,
+   "change": 14500.0,
+   "pct": 5.675,
    "asof": "09.07",
    "spark": [
     231000.0,
@@ -1439,7 +1439,7 @@
     250500.0,
     250000.0,
     255500.0,
-    265000.0
+    270000.0
    ]
   },
   {
@@ -1449,9 +1449,9 @@
    "market": "KOSPI",
    "tag": "HBM",
    "currency": "KRW",
-   "value": 1738000.0,
-   "change": 91000.0,
-   "pct": 5.525,
+   "value": 1783000.0,
+   "change": 136000.0,
+   "pct": 8.257,
    "asof": "09.07",
    "spark": [
     1422000.0,
@@ -1474,7 +1474,7 @@
     1613000.0,
     1596000.0,
     1647000.0,
-    1738000.0
+    1783000.0
    ]
   },
   {
@@ -1484,9 +1484,9 @@
    "market": "KOSPI",
    "tag": "철강",
    "currency": "KRW",
-   "value": 334000.0,
-   "change": -3000.0,
-   "pct": -0.89,
+   "value": 335500.0,
+   "change": -1500.0,
+   "pct": -0.445,
    "asof": "09.07",
    "spark": [
     331000.0,
@@ -1509,7 +1509,7 @@
     330000.0,
     342000.0,
     337000.0,
-    334000.0
+    335500.0
    ]
   },
   {
@@ -1519,9 +1519,9 @@
    "market": "KOSDAQ",
    "tag": "바이오",
    "currency": "KRW",
-   "value": 49950.0,
-   "change": 750.0,
-   "pct": 1.524,
+   "value": 49700.0,
+   "change": 500.0,
+   "pct": 1.016,
    "asof": "09.07",
    "spark": [
     57500.0,
@@ -1544,7 +1544,7 @@
     49050.0,
     48500.0,
     49200.0,
-    49950.0
+    49700.0
    ]
   },
   {
@@ -1554,9 +1554,9 @@
    "market": "KOSDAQ",
    "tag": "통신장비",
    "currency": "KRW",
-   "value": 12100.0,
-   "change": 160.0,
-   "pct": 1.34,
+   "value": 11980.0,
+   "change": 40.0,
+   "pct": 0.335,
    "asof": "09.07",
    "spark": [
     15210.0,
@@ -1579,7 +1579,7 @@
     12130.0,
     11650.0,
     11940.0,
-    12100.0
+    11980.0
    ]
   },
   {
@@ -1589,9 +1589,9 @@
    "market": "KOSDAQ",
    "tag": "반도체",
    "currency": "KRW",
-   "value": 71400.0,
-   "change": 4100.0,
-   "pct": 6.092,
+   "value": 69900.0,
+   "change": 2600.0,
+   "pct": 3.863,
    "asof": "09.07",
    "spark": [
     57100.0,
@@ -1614,7 +1614,7 @@
     62800.0,
     61500.0,
     67300.0,
-    71400.0
+    69900.0
    ]
   },
   {
@@ -1729,17 +1729,24 @@
  "news": [
   {
    "kicker": "KR",
+   "title": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합)",
+   "body": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합) &nbsp;&nbsp;",
+   "source": "연합뉴스 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE5SVnYzTmdfTHpGS2pETUtPQkJRdmxSY3h4OUxOQXJmVVpDcEVxZEFhTzJlQUxnZkhaejBKaUF2V1VVTzBWYWFYemt0cXZjOVh1SmdDTV9iWnd3Q3JLT25SUdIBYEFVX3lxTE5SVnYzTmdfTHpGS2pETUtPQkJRdmxSY3h4OUxOQXJmVVpDcEVxZEFhTzJlQUxnZkhaejBKaUF2V1VVTzBWYWFYemt0cXZjOVh1SmdDTV9iWnd3Q3JLT25SUQ?oc=5"
+  },
+  {
+   "kicker": "KR",
    "title": "'사상 첫 수능만점' 일 냈다…美 AI 훈풍에 코스피 6,900 회복 |",
    "body": "'사상 첫 수능만점' 일 냈다…美 AI 훈풍에 코스피 6,900 회복 | &nbsp;&nbsp;",
    "source": "연합인포맥스 · 09.07",
    "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFBJRXozQmxrTG1iRFZpWFBzWmJXdlMtY3E2S3N4TFdwamFzLS1kMXZqQVZQODR4ZEdQdndINjRnMDVGak5STVZtQW85UEY3WEN5VlJmQWFocVRUaGhKQTVjeEhqMUkyNGdDRGsxaVk5NE5qQVNM?oc=5"
   },
   {
-   "kicker": "KR",
-   "title": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합)",
-   "body": "코스피, 오픈AI발 호재에 6,900선 탈환…코스닥은 1% 상승(종합) &nbsp;&nbsp;",
-   "source": "연합뉴스 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBCZ210NEx1OHdHazlxc3U2SzZsWTJVR2NsSjdUbEdOdnQ0ZFVFZ2hmNjVzUU5uTDZDT1BaU2Voa01ya29sWmFqM2kydmk1MUZKX1RKWXFKTXZGUTTSAWBBVV95cUxOUlZ2M05nX0x6RktqRE1LT0JCUXZsUmN4eDlMTkFyZlVaQ3BFcWRBYU8yZUFMZ2ZIWnowSmlBdldVVU8wVmFhWHprdHF2YzlYdUpnQ01fYlp3d0NyS09uUlE?oc=5"
+   "kicker": "FX",
+   "title": "코스피 3%대 상승 출발...원·달러 환율 장중 1,330원대",
+   "body": "코스피 3%대 상승 출발...원·달러 환율 장중 1,330원대 &nbsp;&nbsp;",
+   "source": "ytn.co.kr · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTFA5YTBRT3ZzMEhOOFpZdU8tekFHQkJqbmJFUC1mVUdUUzdmTE1qaDU0Yzd0Z1ktbW14NURaZmVCbGhwQnpyazBhYUhJTUU4SzJELXIwakRnY28xNVlVVlpSUHpYa3FZTllOTHdyNlpvMA?oc=5"
   },
   {
    "kicker": "FX",
@@ -1749,11 +1756,11 @@
    "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9wVVI1NGJ1R0dXbVlBdEMyYlJFRkZxeUpNa19aaHBGclZMS2dtYnA5U3ZOTktYWmtIZ0NhZFZmV053dXJ3c3d3d2EzNmtaVWNEbFpac3dkZVZUZEpUc1AxRw?oc=5"
   },
   {
-   "kicker": "FX",
-   "title": "원·달러 환율 23개월 만에 최저 수준…기업 달러예금 역대 최대",
-   "body": "원·달러 환율 23개월 만에 최저 수준…기업 달러예금 역대 최대 &nbsp;&nbsp;",
-   "source": "더나은미래 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiUkFVX3lxTFBkWnZwQ2FNWFNVM1U5REE0ZWUyUlQwOEYxQUp3bmlQRVJReG52elp2VzVzdDllZ25QT29OZkNJZE0taWFwVUI3MWNKQkVGQmh5UGc?oc=5"
+   "kicker": "US",
+   "title": "[뉴스프레소] 뉴욕증시 동반 하락…강한 고용에 금리인상 우려 재확대 - 머니투데이",
+   "body": "[뉴스프레소] 뉴욕증시 동반 하락…강한 고용에 금리인상 우려 재확대 - 머니투데이 &nbsp;&nbsp;",
+   "source": "머니투데이 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBRQ1YtSHJmdUVOYThTQmI4OFIwcFBpcy1xQjY5SndlVmc2OUNzXzFPeTFoVjY0dHF6d0tibWF2ZFE3MHRTdm9RRDdzemFweEZBSHZXS1JMOW50SUZ6Wkk1V09MX1BUandkT2F5VVRn0gFuQVVfeXFMUFFDVi1IcmZ1RU5hOFNCYjg4UjBwUGlzLXFCNjlKd2VWZzY5Q3NfMU95MWhWNjR0cXp3S2JtYXZkUTcwdFN2b1FEN3N6YXB4RkFIdldLUkw5bnRJRnpaSTVXT0xfUFRqd2RPYXlVVGc?oc=5"
   },
   {
    "kicker": "US",
@@ -1763,18 +1770,11 @@
    "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNSk1YRm9hRFpTZFdtcEczTUotbkZPbi1UeEpwaDMzd243MU0yNFZlQXVSckNiMHZrbG0zTUdCQkNKWTFqRGg1TWFoYVY1ak8zbEtGUi1ueFRyeG9yZTc5Y0tkZXh4ajZCSFctUngyb3d3dFR0SzVoMGJJYlZHN3pPa2lxTXAyVEpLUUNB?oc=5"
   },
   {
-   "kicker": "US",
-   "title": "뉴욕증시 하락 마감...금리 인상 우려·국제유가 상승",
-   "body": "뉴욕증시 하락 마감...금리 인상 우려·국제유가 상승 &nbsp;&nbsp;",
-   "source": "gukjenews.com · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBzT01ROXpmVkJBQVZtVmFhbTFqc3U4WXJuZ0NsOFcza0hWeVNNZDRWSktzRHVfOWZoUWk1bmswSC10ZnBEa3BiOFNqbGtVd3I4aVBOWHBRU2JDc213QUU5R0tOUl8wWExTUkFuTlR3?oc=5"
-  },
-  {
    "kicker": "OIL",
    "title": "[원자재 시황] 미 고용지표 호조에 금값 하락",
    "body": "[원자재 시황] 미 고용지표 호조에 금값 하락 &nbsp;&nbsp;",
-   "source": "네이트 · 09.07",
-   "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTFBtX1JsNlVHdGNMNy1KYmt3VEhvRXdyeVRQUnBXRHdIcUN6Q1RNY2VkVlMwTmRPNDFsNERlYjEyVFpVREE3RGdqRTUwVXdSQUtGclFv?oc=5"
+   "source": "ebn.co.kr · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBwNzVxWUhMb1dISFlWenRsb2c1MzEtSUp5RzIxRkpQcElJRUp2TWVjWDlzVzhLUEttYUE1bXBnMGVtR3cwZ2Y2RkdOSlJXVU5XSXNRd0dOTFBxNmJ0RjZXUkRjbURuZWV2?oc=5"
   },
   {
    "kicker": "OIL",
@@ -1792,13 +1792,150 @@
   },
   {
    "kicker": "FED",
-   "title": "[증시전략] 연준의 금리 결정, 돌고돌아 \"데이터 기반\"…물가 관건",
-   "body": "[증시전략] 연준의 금리 결정, 돌고돌아 \"데이터 기반\"…물가 관건 &nbsp;&nbsp;",
-   "source": "v.daum.net · 09.06",
-   "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE44dVpLZzJCVnotdkFYWW40bFU0eXJKWlVzN1dZTEtJVElDajY5eXVFYVI2VUhsS1EzWHIteE9WYTBfdVJoWWJDSXJ5a3Y3X1k?oc=5"
+   "title": "비트코인, 연준 금리 인상 전망·유가 급등에 8만 달러 아래로 하락",
+   "body": "비트코인, 연준 금리 인상 전망·유가 급등에 8만 달러 아래로 하락 &nbsp;&nbsp;",
+   "source": "Investing.com 한국어 · 09.07",
+   "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE8xb043TVQ4NWFHeTFpWHpUVVR0WlktcHMzOEtwZmFRU25ObnNuYUJ5ekFySnBkVlhaQkJvLXlNVnRUNlY0UnE5ZGtmejJlUlVadURFNEhqaFBkWGM2MHZ4TWgxV05MMFAyYlpITFBsOEpSRWM?oc=5"
   }
  ],
- "filings": [],
- "dartOn": false,
+ "filings": [
+  {
+   "name": "SK하이닉스",
+   "code": "000660",
+   "date": "2026-09-04",
+   "title": "풍문또는보도에대한해명(미확정)",
+   "filer": "SK하이닉스",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260904800642"
+  },
+  {
+   "name": "파두",
+   "code": "440110",
+   "date": "2026-09-04",
+   "title": "기업설명회(IR)개최",
+   "filer": "파두",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260904900277"
+  },
+  {
+   "name": "파두",
+   "code": "440110",
+   "date": "2026-09-04",
+   "title": "기업설명회(IR)개최",
+   "filer": "파두",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260904900273"
+  },
+  {
+   "name": "POSCO홀딩스",
+   "code": "005490",
+   "date": "2026-09-03",
+   "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+   "filer": "김준기",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260903000268"
+  },
+  {
+   "name": "POSCO홀딩스",
+   "code": "005490",
+   "date": "2026-09-03",
+   "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+   "filer": "유영숙",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260903000243"
+  },
+  {
+   "name": "POSCO홀딩스",
+   "code": "005490",
+   "date": "2026-09-02",
+   "title": "[기재정정]자기주식처분결과보고서",
+   "filer": "POSCO홀딩스",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260902000153"
+  },
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "date": "2026-08-31",
+   "title": "대규모기업집단현황공시[분기별공시(대표회사용)]",
+   "filer": "삼성전자",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831000250"
+  },
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "date": "2026-08-31",
+   "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+   "filer": "김은용",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831000066"
+  },
+  {
+   "name": "아이티센글로벌",
+   "code": "124500",
+   "date": "2026-08-28",
+   "title": "[기재정정]타인에대한채무보증결정",
+   "filer": "아이티센글로벌",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828900348"
+  },
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "date": "2026-08-28",
+   "title": "주식등의대량보유상황보고서(일반)",
+   "filer": "삼성물산",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001916"
+  },
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "date": "2026-08-28",
+   "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+   "filer": "포르치니마우로",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001836"
+  },
+  {
+   "name": "SK하이닉스",
+   "code": "000660",
+   "date": "2026-08-28",
+   "title": "대규모기업집단현황공시[분기별공시(개별회사용)]",
+   "filer": "SK하이닉스",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828000879"
+  },
+  {
+   "name": "삼성전자",
+   "code": "005930",
+   "date": "2026-08-26",
+   "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+   "filer": "김경륜",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000445"
+  },
+  {
+   "name": "POSCO홀딩스",
+   "code": "005490",
+   "date": "2026-08-26",
+   "title": "대규모기업집단현황공시[분기별공시(대표회사용)]",
+   "filer": "POSCO홀딩스",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000718"
+  },
+  {
+   "name": "파두",
+   "code": "440110",
+   "date": "2026-08-26",
+   "title": "주식등의대량보유상황보고서(약식)",
+   "filer": "이지효",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000723"
+  },
+  {
+   "name": "파두",
+   "code": "440110",
+   "date": "2026-08-26",
+   "title": "주식등의대량보유상황보고서(일반)",
+   "filer": "남이현",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000706"
+  },
+  {
+   "name": "아이티센글로벌",
+   "code": "124500",
+   "date": "2026-08-24",
+   "title": "기업설명회(IR)개최",
+   "filer": "아이티센글로벌",
+   "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260824900251"
+  }
+ ],
+ "dartOn": true,
  "warnings": []
 }
