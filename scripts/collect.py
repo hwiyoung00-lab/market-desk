@@ -242,6 +242,53 @@ NAVER_ROW = re.compile(
 NAVER_INDEX = {"^KS11": "KOSPI", "^KQ11": "KOSDAQ"}
 
 
+# --------------------------------------------------------------------------
+# 시장 구분
+#
+# 시장마다 휴장일이 다릅니다. 미국이 노동절로 쉬는 날 한국은 정상 거래하므로
+# 두 지수의 "기준일"이 달라지는데, 이건 수집 실패가 아니라 정상입니다.
+# 항목마다 어느 시장 소속인지 표시해 두고, 화면에서는 "그 시장의 최근
+# 거래일"과 비교해 늦은 것만 지연으로 표시합니다.
+# --------------------------------------------------------------------------
+
+MARKET_LABEL = {"KR": "한국 증시", "JP": "일본 증시", "HK": "홍콩 증시",
+                "EU": "유럽 증시", "US": "미국 증시",
+                "FX": "외환", "FUT": "선물·지수", "CRYPTO": "암호화폐"}
+
+MARKET_ORDER = ["KR", "US", "JP", "HK", "EU", "FX", "FUT", "CRYPTO"]
+
+# 접미사만으로는 갈리지 않는 것들. 달러인덱스는 ICE 지수라 티커가 .NYB 로
+# 끝나지만 뉴욕 증시 시간표를 따르지 않습니다. 미국 증시가 쉬는 날에도
+# 값이 갱신되므로 여기를 안 잡아주면 "미국 증시 최근 거래일"이 하루
+# 앞당겨져, 정상인 미국 지수들이 전부 지연으로 잘못 표시됩니다.
+#
+# 달러인덱스는 현물 환율(24시간)보다 일봉 마감이 반나절 늦게 붙어서 FX 로
+# 묶으면 늘 하루 뒤처져 보입니다. 실제로는 ICE 선물 시간표와 같으므로
+# 선물 쪽에 넣습니다.
+MARKET_OVERRIDE = {"DX-Y.NYB": "FUT"}
+
+
+def market_of(symbol):
+    s = (symbol or "").upper()
+    if s in MARKET_OVERRIDE:
+        return MARKET_OVERRIDE[s]
+    if s in NAVER_INDEX or s.endswith((".KS", ".KQ")):
+        return "KR"
+    if s == "^N225" or s.endswith(".T"):
+        return "JP"
+    if s == "^HSI" or s.endswith(".HK"):
+        return "HK"
+    if s in ("^STOXX50E", "^FTSE", "^GDAXI", "^FCHI") or s.endswith((".L", ".DE", ".PA")):
+        return "EU"
+    if s.endswith("-USD"):
+        return "CRYPTO"
+    if s.endswith("=X"):
+        return "FX"
+    if s.endswith("=F"):
+        return "FUT"
+    return "US"
+
+
 def hist_naver(symbol):
     if symbol in NAVER_INDEX:
         code = NAVER_INDEX[symbol]
@@ -345,6 +392,7 @@ def quote(symbol):
             "change": price - prev,
             "pct": None if not prev else (price - prev) / prev * 100.0,
             "asof": h[-1][0][5:].replace("-", "."),
+            "date": h[-1][0],
             "currency": s["currency"],
             "spark": [rnd(v, 4) for _, v in downsample(h[-22:], 22)],
             "hist": h}
@@ -559,7 +607,8 @@ def block(specs, prev_list, extra=None, with_returns=False):
             continue
         row = {"name": s["name"], "symbol": s["symbol"], "dp": s.get("dp", 2),
                "value": rnd(q["price"]), "change": rnd(q["change"]),
-               "pct": rnd(q["pct"], 3), "asof": q["asof"], "spark": q["spark"]}
+               "pct": rnd(q["pct"], 3), "asof": q["asof"], "spark": q["spark"],
+               "mkt": market_of(s["symbol"]), "_d": q["date"]}
         if with_returns:
             row["ret"] = returns_block(q["hist"])
         if extra:
@@ -680,6 +729,53 @@ def build_regime(cfg, ratios):
                           for k, v in QUADRANTS.items()]}
 
 
+ROW_BLOCKS = ("indices", "macro", "rates", "sectors", "assets",
+              "crypto", "watchlist")
+
+
+def build_markets(out):
+    """시장별 최근 거래일을 모으고, 각 행에 지연 여부를 표시합니다.
+
+    같은 시장의 여러 종목이 같은 날짜를 가리키면 그게 그 시장의 최근
+    거래일입니다. 오늘 날짜보다 며칠 이르더라도 휴장이면 정상입니다.
+    반대로 같은 시장 안에서 혼자만 날짜가 뒤처진 항목은 진짜 지연입니다.
+    """
+    rows = []
+    for key in ROW_BLOCKS:
+        for r in out.get(key) or []:
+            if not r.get("mkt") and r.get("symbol"):
+                r["mkt"] = market_of(r["symbol"])
+            rows.append(r)
+
+    latest = {}
+    for r in rows:
+        d, m = r.get("_d"), r.get("mkt")
+        if d and m and d > latest.get(m, ""):
+            latest[m] = d
+
+    today = datetime.now(KST).date()
+    markets = []
+    for m in MARKET_ORDER:
+        if m not in latest:
+            continue
+        d = latest[m]
+        try:
+            lag = (today - datetime.strptime(d, "%Y-%m-%d").date()).days
+        except Exception:
+            lag = 0
+        markets.append({"code": m, "label": MARKET_LABEL.get(m, m),
+                        "date": d, "asof": d[5:].replace("-", "."),
+                        "lagDays": lag})
+
+    # 개별 항목이 자기 시장보다 뒤처졌을 때만 지연으로 봅니다.
+    for r in rows:
+        d, m = r.pop("_d", None), r.get("mkt")
+        if d and m and m in latest and d < latest[m]:
+            r["behind"] = True
+
+    return markets
+
+
 def main():
     cfg = strip_comments(load_json(CONFIG))
     cal = strip_comments(load_json(CALENDAR, {"items": []}))
@@ -788,6 +884,7 @@ def main():
     else:
         out["filings"], out["dartOn"] = [], False
 
+    out["markets"] = build_markets(out)
     out["warnings"] = warnings
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
