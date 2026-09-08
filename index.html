@@ -124,6 +124,13 @@ nav{padding:12px 10px; flex:1}
 .ix-chg{font-size:11.5px; font-weight:500; display:flex; gap:6px; align-items:baseline; flex-wrap:wrap}
 .ix-foot{display:flex; align-items:flex-end; gap:8px; margin-top:4px}
 .ix-asof{font-size:10px; color:var(--faint)}
+.mkt-clock{display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; margin-top:9px;
+  font-size:11px; color:var(--muted); line-height:1.6}
+.mkt-clock .mk{display:inline-flex; align-items:baseline; gap:5px; white-space:nowrap}
+.mkt-clock .mk b{font-weight:600; color:var(--ink-2)}
+.mkt-clock .mk .d{font-family:"IBM Plex Mono",monospace; color:var(--ink-2)}
+.mkt-clock .mk .h{color:var(--faint)}
+.mkt-clock .why{flex-basis:100%; color:var(--faint); font-size:11px; margin-top:1px}
 .ix-foot svg{margin-left:auto}
 
 table{width:100%; border-collapse:collapse}
@@ -318,6 +325,7 @@ td.heat{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums
 
       <div class="sec-t">주요 지수</div>
       <section class="strip" id="strip"></section>
+      <div class="mkt-clock" id="mktClock"></div>
 
       <div class="grid g2" style="margin-top:18px">
         <section class="panel">
@@ -626,10 +634,43 @@ td.heat{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums
       ch.appendChild(el("span","num",nz(it.pct)?sgn(it.pct,2)+"%":""));
       c.appendChild(ch);
       var f=el("div","ix-foot");
-      f.appendChild(el("span","ix-asof",(it.asof||"")+(it.stale?" · 이전 값":"")));
+      var note=it.stale?" · 이전 값":(it.behind?" · 지연":"");
+      f.appendChild(el("span","ix-asof",(it.asof||"")+note));
       f.appendChild(spark(it.spark,it.pct,58,18));
       c.appendChild(f); host.appendChild(c);
     });
+    rMarketClock(items);
+  }
+
+  /* ---------- 시장 시계 ----------
+     시장마다 휴장일이 달라서 기준일이 갈립니다. 미국이 노동절로 쉬는 날
+     한국은 정상 거래하므로 09.04와 09.08이 나란히 놓입니다. 오류가 아니라는
+     걸 화면에서 바로 알 수 있게, 시장별 최근 거래일을 따로 적어줍니다. */
+  function rMarketClock(shown){
+    var host=clear("mktClock"); if(!host) return;
+    var all=D.markets||[]; if(!all.length) return;
+
+    // 지금 화면에 떠 있는 지수들이 속한 시장만 보여줍니다.
+    var used={}; (shown||[]).forEach(function(x){ if(x&&x.mkt) used[x.mkt]=1; });
+    var list=all.filter(function(m){ return used[m.code]; });
+    if(list.length<2) return;              // 시장이 하나뿐이면 설명할 게 없습니다
+
+    var newest=list.reduce(function(a,b){ return b.date>a?b.date:a; },"");
+    var late=[];
+    list.forEach(function(m){
+      var w=el("span","mk");
+      w.appendChild(el("b",null,m.label));
+      w.appendChild(el("span","d",m.asof));
+      if(m.date<newest){ w.appendChild(el("span","h","휴장")); late.push(m.label); }
+      host.appendChild(w);
+    });
+
+    if(late.length){
+      host.appendChild(el("span","why",
+        late.join(" · ")+"의 마지막 거래일이 "+
+        "다른 시장보다 이릅니다. 그 사이 휴장이라 이게 최신 종가이고, 수집이 멈춘 게 아닙니다. "+
+        "실제로 밀린 항목에는 개별로 ‘지연’이 붙습니다."));
+    }
   }
 
   /* ---------- 수익률 표 (섹터·크로스에셋 공용) ---------- */
@@ -926,7 +967,10 @@ td.heat{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums
       var tp=el("td"); tp.appendChild(el("span","num",money(v))); tr.appendChild(tp);
       var tc=el("td"); tc.appendChild(el("span","num "+dir(v.pct),sgn(v.change,d))); tr.appendChild(tc);
       var tr2=el("td"); tr2.appendChild(el("span","pill num "+pc(v.pct),nz(v.pct)?sgn(v.pct,2)+"%":"—")); tr.appendChild(tr2);
-      var ta=el("td"); ta.appendChild(el("span","tag"+(v.stale?" stale":""),v.stale?"이전 값":(v.asof||"—"))); tr.appendChild(ta);
+      var ta=el("td"), flag=v.stale||v.behind;
+      ta.appendChild(el("span","tag"+(flag?" stale":""),
+        v.stale?"이전 값":(v.behind?(v.asof||"")+" 지연":(v.asof||"—"))));
+      tr.appendChild(ta);
       tb.appendChild(tr);
     });
     t.appendChild(tb);
